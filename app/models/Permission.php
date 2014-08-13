@@ -3,7 +3,8 @@
 class Permission extends Eloquent {
 	public $timestamps = false;
 
-	public function ranks() {
-		return $this->belongsToMany('Rank');
+	public function roles() {
+		return $this->belongsToMany('Role');
 	}
+
 }

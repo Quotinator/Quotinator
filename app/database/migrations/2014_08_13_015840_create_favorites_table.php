@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRankUserTable extends Migration {
+class CreateFavoritesTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,12 +12,14 @@ class CreateRankUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('rank_user', function($table)
+		Schema::create('favorites', function($table)
 		{
 			$table->unsignedInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-			$table->unsignedInteger('rank_id');
-			$table->foreign('rank_id')->references('id')->on('ranks')->onDelete('cascade')->onUpdate('cascade');
+			$table->unsignedInteger('quote_id');
+			$table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade')->onUpdate('cascade');
+			$table->primary(array('user_id', 'quote_id'));
+			$table->timestamps();
 		});
 	}
 
@@ -28,7 +30,7 @@ class CreateRankUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('rank_user');
+		Schema::drop('favorites');
 	}
 
 }

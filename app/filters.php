@@ -48,6 +48,17 @@ Route::filter('auth', function()
 	}
 });
 
+Route::filter('can', function($route, $request, $value)
+{
+	if (Auth::user()->can($value)) {
+		// User can view page
+	} else {
+		// User Shouldn't be here
+		return Redirect::route('home');
+	}
+});
+
+
 
 Route::filter('auth.basic', function()
 {

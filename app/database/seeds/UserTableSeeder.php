@@ -10,6 +10,7 @@ class UserTableSeeder extends Seeder {
         $user->username = 'tjbenator';
         $user->email = 'tjbenator@gmail.com';
         $user->password = Hash::make('Test');
+        $user->about = 'tjbenator enjoys tummy slides and long walks in the snow.';
         $user->save();        
     }
 }

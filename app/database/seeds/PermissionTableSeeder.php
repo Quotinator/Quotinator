@@ -4,20 +4,21 @@ class PermissionTableSeeder extends Seeder {
     public function run()
     {
         DB::table('permissions')->delete();
-        $nodes = array();
-        $nodes[] = 'quote.submit';
-        $nodes[] = 'quote.edit';
-        $nodes[] = 'moderate.quote.approve';
-        $nodes[] = 'moderate.quote.deny';
-        $nodes[] = 'moderate.quote.delete';
-        $nodes[] = 'administrate.site.settings';
 
-        $rank = Rank::where('name', '=', 'administrator')->first();
-        foreach ($nodes as $node) {
-            $permission = new Permission;
-            $permission->node = $node;
-            $permission->save();
-            $rank->permissions()->attach($permission);
+        $permissions[]['node'] = 'quote.edit';
+        $permissions[]['node'] = 'quote.submit';
+        $permissions[]['node'] = 'quote.approve';
+        $permissions[]['node'] = 'quote.deny';
+        $permissions[]['node'] = 'quote.favorite';
+        $permissions[]['node'] = 'user.preferences';
+        $permissions[]['node'] = 'site.preferences';
+        $role = Role::where('name', '=', 'administrator')->first();
+        foreach ($permissions as $permission) {
+            $perm = new Permission;
+            $perm->node = $permission['node'];
+            $perm->save();
+            $role->permissions()->attach($perm);
         }
+
     }
 }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRanksTable extends Migration {
+class CreatePermissionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateRanksTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('ranks', function($table)
+		Schema::create('permissions', function($table)
 		{
 			$table->increments('id');
-			$table->string('name', 32);
+			$table->string('node', 32);
+			$table->string('description', 64);
 		});
 	}
 
@@ -26,7 +27,7 @@ class CreateRanksTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('ranks');
+		Schema::drop('permissions');
 	}
 
 }

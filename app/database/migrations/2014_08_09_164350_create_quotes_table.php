@@ -18,7 +18,7 @@ class CreateQuotesTable extends Migration {
 			$table->unsignedInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->string('title', 32);
-			$table->string('quote', 64);
+			$table->longText('quote');
 			$table->tinyInteger('status');
 			$table->timestamps();
 		});

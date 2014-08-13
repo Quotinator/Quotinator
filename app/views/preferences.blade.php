@@ -23,9 +23,12 @@
     {{ Form::label('newpassword_confirmation', 'New Password Again') }}
     {{ Form::password('newpassword_confirmation') }}<br />
 
-	{{ Form::label('password', 'Current Password') }}
-    {{ Form::password('password') }}<br />
+   	{{ Form::label('about', 'About me') }}
+    {{ Form::textarea('about', Auth::User()->about, array('placeholder' => 'Something about yourself')) }}<br />
 
+	{{ Form::label('password', 'Current Password*') }}
+    {{ Form::password('password') }}<br /><br />
+    <i>Current password is required</i><br />
     {{ Form::submit('Save', array('class' => 'save')) }}<br />
 {{ Form::close() }}
 @stop

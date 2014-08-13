@@ -23,8 +23,12 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	public function ranks() {
-		return $this->belongsToMany('Rank');
+	public function roles() {
+		return $this->belongsToMany('Role');
+	}
+
+	public function favorites() {
+		return $this->belongsToMany('Quote', 'favorites', 'user_id', 'quote_id');
 	}
 
 	public function quotes() {
@@ -35,10 +39,16 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->hasMany('Vote');
 	}
 
-	public function getCanAttribute($value)
-	{
-		return true;
+	public function can($permission) {
+		$roles = Auth::user()->roles()->with('permissions')->get();
+		foreach ($roles as $role) {
+			//Check each role of the user for the permission.
+			$count = $role->permissions()->where('node', $permission)->count();
+			if ($count > 0) return true;
+		}
+		return false;
 	}
+
 
 	public function getAvatarAttribute()
 	{

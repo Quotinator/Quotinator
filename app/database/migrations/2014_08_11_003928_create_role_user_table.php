@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateVotesTable extends Migration {
+class CreateRoleUserTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,19 +12,12 @@ class CreateVotesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('votes', function($table)
+		Schema::create('role_user', function($table)
 		{
 			$table->unsignedInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-
-			$table->unsignedInteger('quote_id');
-			$table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade')->onUpdate('cascade');
-
-			$table->primary(array('user_id', 'quote_id'));
-
-			$table->tinyInteger('vote');
-
-			$table->timestamps();
+			$table->unsignedInteger('role_id');
+			$table->foreign('role_id')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
 		});
 	}
 
@@ -35,7 +28,7 @@ class CreateVotesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('votes');
+		Schema::drop('role_user');
 	}
 
 }

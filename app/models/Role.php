@@ -1,6 +1,6 @@
 <?php
 
-class Rank extends Eloquent {
+class Role extends Eloquent {
 	public $timestamps = false;
 
 	public function users() {

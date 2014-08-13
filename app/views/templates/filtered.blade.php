@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class='quote'>
-	{{ Lang::choice('messages.userquotes', $count, array('username' => $user->username, 'count' => $count)) }}
+	@yield('message')
 	</div>
 	@foreach($quotes as $quote)
 		@include('templates.partials.quote', array('quote' => $quote))

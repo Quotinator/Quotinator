@@ -8,7 +8,7 @@ class SubmitController extends BaseController {
 	public function postIndex()
 	{
 			$rules = array (
-				'title' => 'required|alphaNum|min:5',
+				'title' => 'required|min:5',
 				'quote' => 'required|min:15'
 			);
 

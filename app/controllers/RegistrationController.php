@@ -6,7 +6,7 @@ class RegistrationController extends BaseController
 		$data = Input::all();
 
 		$rules = array(
-			'username' => 'required|min:4|max:32',
+			'username' => 'required|min:3|max:32',
 			'email' => 'required|email',
 			'password' => 'required|confirmed|min:8'
 			);

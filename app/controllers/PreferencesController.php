@@ -13,6 +13,7 @@ class PreferencesController extends Controller
 
 		$rules = array(
 			'email' => 'email',
+			'about' => 'max:1024',
 			'newpassword' => 'confirmed|min:8',
 			'password' => 'required'
 			);
@@ -27,13 +28,16 @@ class PreferencesController extends Controller
 			if ($validator->passes()) 
 			{
 				$user = Auth::User();				
-				if (strlen(Input::get('email')) > 0) 
+				if (Input::has('email')) 
 				{
 					$user->email = Input::get('email');
 				}
-				if (strlen(Input::get('newpassword')) > 0) 
+				if (Input::has('newpassword'))
 				{
 					$user->password = Hash::make(Input::get('newpassword'));
+				}
+				if (Input::has('about')) {
+					$user->about = Input::get('about');
 				}
 				$user->save();
 				return Redirect::to('/');	
