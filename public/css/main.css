@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Sunshiney);
 @import url(https://fonts.googleapis.com/css?family=Port+Lligat+Sans);
+/* You are looking at the CSS... Aren't you Aaron! */
 
 * {
   margin: 0px;
@@ -335,6 +336,9 @@ input:not(.search), select, textarea {
 	margin-top: 45px;
 	position: absolute; top: 0; right: 0;
 	height: 64px;
+}
+
+.myavatar, .avatar {
 	border-radius:15px;
 }
 

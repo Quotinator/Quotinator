@@ -17,6 +17,5 @@
 		<a href='#' class='downvotes'>{{ $quote->downVotes() }}<i class='fa fa-arrow-down'></i></a>
 		&nbsp;|&nbsp;{{ $quote->totalVotes() }}
 	</div>
-	<br />
-	<pre class='quotetext' onfocus='copyClipboard(this);'>{{ $quote->quote }}</pre>
+	<pre class='quotetext clear' onfocus='copyClipboard(this);'>{{ $quote->quote }}</pre>
 </div>

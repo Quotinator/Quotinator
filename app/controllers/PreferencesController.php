@@ -36,9 +36,8 @@ class PreferencesController extends Controller
 				{
 					$user->password = Hash::make(Input::get('newpassword'));
 				}
-				if (Input::has('about')) {
-					$user->about = Input::get('about');
-				}
+				$user->about = Input::get('about');
+
 				$user->save();
 				return Redirect::to('/');	
 			}

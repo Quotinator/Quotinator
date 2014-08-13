@@ -2,12 +2,14 @@
 
 @section('pagetitle', 'Preferences')
 @section('content')
-<p>
-	<img title='{{ Auth::User()->username }}' src='{{ Auth::User()->avatar }}'><br />
-	This website uses gravatars.<br />
-	Please visit <a href='https://www.gravatar.com/78883c51e89c462cd15eb22c9c0fe005'>Gravatar</a> to update your avatar.<br /> 
-	Don't have a Gravatar account? <a href='https://en.gravatar.com/connect/?source=_signup'>Click Here!</a>
-</p>
+
+<img class='avatar' title='{{ Auth::User()->username }}' src='{{ Auth::User()->avatar }}'><br />
+This website uses gravatars.<br />
+Please visit <a href='https://www.gravatar.com/78883c51e89c462cd15eb22c9c0fe005'>Gravatar</a> to update your avatar.<br /> 
+Don't have a Gravatar account? <a href='https://en.gravatar.com/connect/?source=_signup'>Click Here!</a>
+
+<div class='clear'></div>
+
 <p>
 	@foreach($errors->all() as $error)
 		{{ $error }} <br />
