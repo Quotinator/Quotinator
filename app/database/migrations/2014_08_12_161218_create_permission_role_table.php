@@ -14,6 +14,7 @@ class CreatePermissionRoleTable extends Migration {
 	{
 		Schema::create('permission_role', function($table)
 		{
+			$table->increments('id');
 			$table->unsignedInteger('permission_id');
 			$table->foreign('permission_id')->references('id')->on('permissions')->onDelete('cascade')->onUpdate('cascade');
 			$table->unsignedInteger('role_id');

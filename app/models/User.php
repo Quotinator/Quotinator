@@ -28,7 +28,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function favorites() {
-		return $this->belongsToMany('Quote', 'favorites', 'user_id', 'quote_id');
+		return $this->belongsToMany('Quote', 'favorites', 'user_id', 'quote_id')->withTimestamps();
 	}
 
 	public function quotes() {
@@ -36,7 +36,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function votes() {
-		return $this->hasMany('Vote');
+		return $this->belongsToMany('Quote', 'votes', 'user_id', 'quote_id')->withTimestamps();
 	}
 
 	public function can($permission) {

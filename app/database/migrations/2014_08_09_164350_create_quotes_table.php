@@ -20,6 +20,7 @@ class CreateQuotesTable extends Migration {
 			$table->string('title', 32);
 			$table->longText('quote');
 			$table->tinyInteger('status');
+			$table->float('confidence');
 			$table->timestamps();
 		});
 	}

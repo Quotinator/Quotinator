@@ -1,6 +1,6 @@
 <div class='quote'>
 	<a name='{{ $quote->id }}'></a>
-	<a href='{{ URL::route('user.profile', [$quote->user->username]) }}'>
+	<a href='{{ URL::route('user.profile', [$quote->user->username]) }}' title="View {{ $quote->user->username }}'s profile">
 		<img class='avatar' src='{{ $quote->user->avatar }}' />
 	</a>
 	<span class='title'>
@@ -12,10 +12,13 @@
 	<br />
 	<em>{{ $quote->created_at }}</em>
 	<div class='votes'>
-		<a href='#' class='upvotes'><i class='fa fa-arrow-up'></i>{{ $quote->upVotes() }}</a>
+		<a href='?upvote={{ $quote->id }}' class='upvotes'><i class='fa fa-arrow-up'></i>{{ $quote->upVotes() }}</a>
 		&nbsp;|&nbsp;
-		<a href='#' class='downvotes'>{{ $quote->downVotes() }}<i class='fa fa-arrow-down'></i></a>
-		&nbsp;|&nbsp;{{ $quote->totalVotes() }}
+		<a href='?downvote={{ $quote->id }}' class='downvotes'>{{ $quote->downVotes() }}<i class='fa fa-arrow-down'></i></a>
+		@if($quote->didAuthVote())
+		&nbsp;|&nbsp;
+		<a href='?unvote={{ $quote->id }}' class='unvote' title='Remove Vote'><i class='fa fa-eraser'></i></a>
+		@endif
 	</div>
 	<pre class='quotetext clear' onfocus='copyClipboard(this);'>{{ $quote->quote }}</pre>
 </div>

@@ -10,29 +10,37 @@
 | and give it the Closure to execute when that URI is requested.
 |
 */
-Route::bind('username', function($value, $route)
+Route::pattern('quote', '[0-9]+');
+Route::pattern('user', '[A-Za-z0-9]+');
+Route::bind('user', function($value, $route)
 {
 	$user = User::where('username', $value)->first();
     if ($user) return $user;
     App::abort(404, 'User not found!');
 });
 
-Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
-Route::get('/random', array('as' => 'random', 'uses' => 'HomeController@getRandom'));
-Route::get('/top', array('as' => 'top', 'uses' => 'HomeController@getTop'));
-
-
-Route::get('/{quote}', array('as' => 'quote', 'uses' => 'HomeController@getQuote'))->where('quote', '[0-9]+');
-
-Route::group(array('prefix' => 'user'), function ()
+Route::model('quote', 'Quote', function()
 {
-	Route::get('/{username}', array('as' => 'user.profile', 'uses' => 'UserController@getProfile'))->where('username', '[A-Za-z0-9]+');
-	Route::get('/{username}/quotes', array('as' => 'user.quotes', 'uses' => 'UserController@getQuotes'))->where('username', '[A-Za-z0-9]+');
-	Route::get('/{username}/favorites', array('as' => 'user.favorites', 'uses' => 'UserController@getFavorites'))->where('username', '[A-Za-z0-9]+');
+    App::abort(404, 'Quote not found!');
 });
 
 
+//Quote listings
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
+Route::get('/random', array('as' => 'random', 'uses' => 'HomeController@getRandom'));
+Route::get('/top', array('as' => 'top', 'uses' => 'HomeController@getTop'));
+Route::get('/{quote}', array('as' => 'quote', 'uses' => 'HomeController@getQuote'));
 
+
+//User Profiles
+Route::group(array('prefix' => 'user'), function ()
+{
+	Route::get('/{user}', array('as' => 'user.profile', 'uses' => 'UserController@getProfile'));
+	Route::get('/{user}/quotes', array('as' => 'user.quotes', 'uses' => 'UserController@getQuotes'));
+	Route::get('/{user}/favorites', array('as' => 'user.favorites', 'uses' => 'UserController@getFavorites'));
+});
+
+//User Pages
 Route::get('/login', array('as' => 'login', 'uses' => 'AuthController@getLogin'));
 Route::post('/login', array('as' => 'login', 'uses' => 'AuthController@postLogin', 'before' => 'csrf'));
 
@@ -40,8 +48,6 @@ Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogou
 
 Route::get('/register', array('as' => 'register', 'uses' => 'RegistrationController@getRegister'));
 Route::post('/register', array('as' => 'register', 'uses' => 'RegistrationController@postRegister'));
-
-Route::get('/about', array('as' => 'about', 'uses' => 'HomeController@getAbout'));
 
 Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@getIndex'));
 Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@postIndex'));
@@ -52,6 +58,8 @@ Route::post('/preferences', array('as' => 'userpreferences', 'before' => 'auth|c
 
 Route::controller('password', 'RemindersController');
 
+//Info Pages
+Route::get('/about', array('as' => 'about', 'uses' => 'HomeController@getAbout'));
 Route::get('/help', array('as' => 'help', 'uses' => function()
 {
 	return '';

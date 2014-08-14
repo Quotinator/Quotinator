@@ -9,6 +9,7 @@ class HomeController extends BaseController
 		$rules = array(
 			'upvote' => 'integer|numeric',
 			'downvote' => 'integer|numeric',
+			'unvote' => 'integer|numeric',
 			'favorite' => 'integer|numeric'
 			);
 		$validator = Validator::make(Input::all(), $rules);
@@ -22,36 +23,39 @@ class HomeController extends BaseController
 					}
 				}
 			}
-			if (Input::has('upvote') || Input::has('downvote'))  {
+			if (Input::has('upvote') || Input::has('downvote') || Input::has('unvote') )  {
+				$value = NULL;
+				$id = NULL;
 				if (Input::has('upvote')) {
 					$value = 1;
 					$id = Input::get('upvote');
 				} elseif (Input::has('downvote')) {
 					$value = 0;
 					$id = Input::get('downvote');
-				} else { 
-					//Not sure how you would get here
+				} elseif (Input::has('unvote')) {
+					$id = Input::get('unvote');
+				}
+
+				$quote = Quote::find($id);
+				if ($quote) {
+					$vuser = $quote->voted()->whereUserId(Auth::user()->id)->first();
+					if (!$vuser) {
+						$quote->voted()->attach(Auth::user(), array('vote' => $value));
+						$quote->updateVoteConfidence();
+						return;
+					} elseif (Input::has('unvote')) {
+						if ($vuser) {
+							$quote->voted()->detach(Auth::user());
+							$quote->updateVoteConfidence();
+						}
+						return;
+					}
+					$vuser->pivot->vote = $value;
+					$vuser->pivot->save();
+					$quote->updateVoteConfidence();
 					return;
 				}
-
-				$user = Auth::user();
-				$quote = Quote::find($id);
-				$vote = $quote->votes()->whereUserId($user->id);
-				
-				$vote->vote = 0;
-				$vote->save();
-				die();
-				if (!$vote) {        	
-					$vote = new Vote;
-					
-	        		$vote->user()->associate($user);
-	        		$vote->quote()->associate($quote);
-					$vote->save();
-				} else {
-					$vote->vote = $value;
-					$vote->save();
-				}
-
+				return;
 			}
 		}
 	}
@@ -70,7 +74,7 @@ class HomeController extends BaseController
 	public function getTop()
 	{
 		$this->input();
-		return View::make('home')->with('quotes', Quote::paginate(Config::get('per_page')));
+		return View::make('home')->with('quotes', Quote::orderBy('confidence')->paginate(Config::get('per_page')));
 	}	
 
 	public function getAbout()
@@ -78,10 +82,10 @@ class HomeController extends BaseController
 		return View::make('about')->with('pagetitle', 'About');
 	}
 
-	public function getQuote($id)
+	public function getQuote(Quote $quote)
 	{
 		$this->input();
-		return View::make('quote')->with('quote', Quote::find($id));
+		return View::make('quote')->with('quote', $quote);
 	}
 
 

@@ -14,6 +14,7 @@ class CreateRoleUserTable extends Migration {
 	{
 		Schema::create('role_user', function($table)
 		{
+			$table->increments('id');
 			$table->unsignedInteger('user_id');
 			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
 			$table->unsignedInteger('role_id');

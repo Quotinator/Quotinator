@@ -14,6 +14,13 @@ class Quote extends Eloquent {
 		return $this->hasMany('Vote')->whereVote(0)->count();
 	}
 
+	public function didAuthVote() {
+		if (!Auth::check()) return false;
+		if ($this->hasMany('Vote')->whereUserId(Auth::User()->id)->count() > 0) {
+			return true;
+		}
+	}
+
 	public function totalVotes() {
 		return $this->hasMany('Vote')->count();	
 	}
@@ -28,15 +35,17 @@ class Quote extends Eloquent {
 		return sqrt($phat+$z*$z/(2*$n)-$z*(($phat*(1-$phat)+$z*$z/(4*$n))/$n))/(1+$z*$z/$n);
 	}
 
-	public function votes() {
-		return $this->hasMany('Vote');
+	public function updateVoteConfidence() {
+		$this->confidence = $this->voteConfidence();
+		$this->save();
 	}
+
 
 	public function favorited() {
-		return $this->belongsToMany('User', 'favorites', 'quote_id', 'user_id');
+		return $this->belongsToMany('User', 'favorites', 'quote_id', 'user_id')->withTimestamps();
 	}
 
-	public function users() {
-		return $this->belongsToMany('User', 'votes', 'quote_id', 'user_id');
+	public function voted() {
+		return $this->belongsToMany('User', 'votes', 'quote_id', 'user_id')->withTimestamps();
 	}
 }

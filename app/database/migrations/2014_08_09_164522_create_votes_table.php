@@ -14,13 +14,12 @@ class CreateVotesTable extends Migration {
 	{
 		Schema::create('votes', function($table)
 		{
+			$table->increments('id');
 			$table->unsignedInteger('user_id');
-			$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+			$table->foreign('user_id')->references('id')->on('users')->onDelete('restrict')->onUpdate('cascade');
 
 			$table->unsignedInteger('quote_id');
-			$table->foreign('quote_id')->references('id')->on('quotes')->onDelete('cascade')->onUpdate('cascade');
-
-			$table->primary(array('user_id', 'quote_id'));
+			$table->foreign('quote_id')->references('id')->on('quotes')->onDelete('restrict')->onUpdate('cascade');
 
 			$table->tinyInteger('vote');
 
