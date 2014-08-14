@@ -99,3 +99,111 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+
+Route::filter('votes', function() {
+	if (Auth::check()) {
+		$rules = array(
+			'upvote' => 'integer|numeric',
+			'downvote' => 'integer|numeric',
+			'unvote' => 'integer|numeric',
+			);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->passes()) {
+			$vote = NULL;
+			$id = NULL;
+			$type = NULL;
+			if (Input::has('upvote')) {
+				$type = 'upvote';
+				$id = Input::get('upvote');
+				$vote = 1;
+			}
+			if (Input::has('downvote')) {
+				$type = 'downvote';
+				$id = Input::get('downvote');
+				$vote = 0;
+			}
+			if (Input::has('unvote')) {
+				$type ='unvote';
+				$id = Input::get('unvote');
+			}
+
+			$quote = Quote::find($id);
+			if ($quote) {
+				$vuser = $quote->voted()->whereUserId(Auth::user()->id)->first();
+				if ($type == 'upvote' || $type == 'downvote') {
+						if (!$vuser) {
+							$quote->voted()->attach(Auth::user(), array('vote' => $vote));
+						} else {
+							$vuser->pivot->vote = $vote;
+							$vuser->pivot->save();
+							$quote->updateVoteConfidence();
+						}
+				} elseif ($type == 'unvote') {
+					$quote->voted()->detach(Auth::user());
+					$quote->updateVoteConfidence();
+				}
+				//Our confidence has changed in this quote.
+				$quote->updateVoteConfidence();
+			}
+		}
+	}
+});
+
+
+Route::filter('moderate', function() {
+	if (Auth::check()) {
+		$rules = array(
+			'approve' => 'integer|numeric',
+			'deny' => 'integer|numeric',
+			);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->passes()) {
+			if (Input::has('approve')) {
+				$quote = Quote::find(Input::get('approve'));
+				if ($quote) {
+					$quote->status = 1;
+					$quote->save();
+				}
+			}
+			if (Input::has('deny')) {
+				$quote = Quote::find(Input::get('deny'));
+				if ($quote) {
+					$quote->status = -1;
+					$quote->save();
+				}
+			}
+		}
+	}
+});
+
+
+Route::filter('favorite', function() {
+	if (Auth::check()) {
+		$rules = array(
+			'favor' => 'integer|numeric',
+			'unfavor' => 'integer|numeric'
+		);
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->passes()) {
+			if (Input::has('favor')) {
+				$id = Input::get('favor');
+				$quote = Quote::find($id);
+				if ($quote) {
+					if (!Auth::user()->favorites->contains($id)) {
+						Auth::user()->favorites()->attach($quote);
+					}
+				}
+			}
+			if (Input::has('unfavor')) {
+				$id = Input::get('unfavor');
+				$quote = Quote::find($id);
+				if ($quote) {
+					if (Auth::user()->favorites->contains($id)) {
+						Auth::user()->favorites()->detach($quote);
+					}
+				}
+			}
+		}
+	}
+});

@@ -39,13 +39,22 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->belongsToMany('Quote', 'votes', 'user_id', 'quote_id')->withTimestamps();
 	}
 
-	public function can($permission) {
-		$roles = Auth::user()->roles()->with('permissions')->get();
-		foreach ($roles as $role) {
-			//Check each role of the user for the permission.
-			$count = $role->permissions()->where('node', $permission)->count();
-			if ($count > 0) return true;
+	public function can($permissions) {
+		if (!is_array($permissions)) {
+			$permissions = array($permissions);
 		}
+
+		$roles = $this->roles()->with('permissions')->get();
+		if ($roles) {
+			foreach ($roles as $role) {
+				foreach ($permissions as $permission) {
+					//Check each role of the user for the permission.
+					$count = $role->permissions()->where('node', $permission)->count();
+					if ($count > 0) return true;
+				}
+			}
+		}
+
 		return false;
 	}
 

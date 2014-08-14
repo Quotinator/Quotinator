@@ -157,6 +157,7 @@ ul.nav li a:hover {
 }
 
 .quotes .quote {
+	position: relative;
 	text-shadow: 2px 2px 1px #666;
 }
 
@@ -176,10 +177,19 @@ ul.nav li a:hover {
 	border: 1px dashed #666;	
 }
 
+.favorite {
+	color: #e3cf7a;
+}
 
 .quotes .quote .title {
 	font-size: 2em;
 	font-weight: bold;
+}
+
+.quotes .quote .moderate {
+	position: absolute;
+	top: 10px;
+	right: 10px;
 }
 
 .quotes .quote .votes {

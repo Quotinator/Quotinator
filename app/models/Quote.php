@@ -21,6 +21,13 @@ class Quote extends Eloquent {
 		}
 	}
 
+	public function isFavored() {
+		if (!Auth::check()) return false;
+		if ($this->belongsToMany('User', 'favorites', 'quote_id', 'user_id')->whereUserId(Auth::User()->id)->count() > 0) {
+			return true;
+		}
+	}
+
 	public function totalVotes() {
 		return $this->hasMany('Vote')->count();	
 	}
