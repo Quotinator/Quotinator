@@ -44,10 +44,8 @@ class HomeController extends BaseController
 						$quote->updateVoteConfidence();
 						return;
 					} elseif (Input::has('unvote')) {
-						if ($vuser) {
-							$quote->voted()->detach(Auth::user());
-							$quote->updateVoteConfidence();
-						}
+						$quote->voted()->detach(Auth::user());
+						$quote->updateVoteConfidence();
 						return;
 					}
 					$vuser->pivot->vote = $value;
