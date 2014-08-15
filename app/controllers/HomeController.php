@@ -19,7 +19,7 @@ class HomeController extends BaseController
 
 	public function getTop()
 	{
-		return View::make('home')->with('quotes', Quote::orderBy('confidence')->whereStatus(1)->paginate(Config::get('settings.per_page')));
+		return View::make('home')->with('quotes', Quote::orderBy('confidence', 'desc')->whereStatus(1)->paginate(Config::get('settings.per_page')));
 	}	
 
 	public function getQuote(Quote $quote)

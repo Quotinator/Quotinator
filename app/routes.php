@@ -64,10 +64,17 @@ Route::group(array('before' => 'auth'), function ()
 
 	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@getIndex'));
 	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@postIndex'));
-
-	Route::get('/preferences', array('as' => 'userpreferences', 'before' => 'auth', 'uses' => 'PreferencesController@getUser'));
-	Route::post('/preferences', array('as' => 'userpreferences', 'before' => 'auth|csrf', 'uses' => 'PreferencesController@postUser'));
 });
+
+Route::group(array('prefix' => 'preferences', 'before' => 'auth'), function()
+	{
+		Route::get('/', array('as' => 'user.preferences', 'before' => 'auth', 'uses' => 'UserPreferencesController@getMain'));
+		Route::get('account', array('as' => 'user.preferences.account', 'before' => 'auth', 'uses' => 'UserPreferencesController@getEditAccount'));
+		Route::post('account', array('as' => 'user.preferences.account', 'before' => 'auth|csrf', 'uses' => 'UserPreferencesController@postEditAccount'));
+
+		Route::get('profile', array('as' => 'user.preferences.profile', 'before' => 'auth', 'uses' => 'UserPreferencesController@getEditProfile'));
+		Route::post('profile', array('as' => 'user.preferences.profile', 'before' => 'auth|csrf', 'uses' => 'UserPreferencesController@postEditProfile'));
+	});
 
 //Info Pages
 Route::get('/about', array('as' => 'about', 'uses' => 'HomeController@getAbout'));

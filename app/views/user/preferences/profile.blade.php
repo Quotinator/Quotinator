@@ -1,6 +1,6 @@
 @extends('templates.page')
 
-@section('pagetitle', 'Preferences')
+@section('pagetitle', 'Preferences - Profile')
 @section('content')
 
 <img class='avatar' title='{{ Auth::User()->username }}' src='{{ Auth::User()->avatar }}'><br />
@@ -15,22 +15,10 @@ Don't have a Gravatar account? <a href='https://en.gravatar.com/connect/?source=
 		{{ $error }} <br />
 	@endforeach
 </p>
-{{ Form::open(array('action' => 'PreferencesController@postUser')) }}
-    {{ Form::label('email', 'Email') }}
-    {{ Form::email('email', Auth::User()->email, array('placeholder' => 'email')) }}<br />
-
-    {{ Form::label('newpassword', 'New Password') }}
-    {{ Form::password('newpassword') }}<br />
-    
-    {{ Form::label('newpassword_confirmation', 'New Password Again') }}
-    {{ Form::password('newpassword_confirmation') }}<br />
-
+{{ Form::open(array('action' => 'UserPreferencesController@postEditProfile')) }}
    	{{ Form::label('about', 'About me') }}
     {{ Form::textarea('about', Auth::User()->about, array('placeholder' => 'Something about yourself')) }}<br />
 
-	{{ Form::label('password', 'Current Password*') }}
-    {{ Form::password('password') }}<br /><br />
-    <i>Current password is required</i><br />
     {{ Form::submit('Save', array('class' => 'save')) }}<br />
 {{ Form::close() }}
 @stop
