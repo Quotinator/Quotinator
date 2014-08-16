@@ -35,6 +35,8 @@ Route::group(array('before' => 'votes|favorite'), function () {
 	Route::get('/random', array('as' => 'random', 'uses' => 'HomeController@getRandom'));
 	Route::get('/top', array('as' => 'top', 'uses' => 'HomeController@getTop'));
 	Route::get('/{quote}', array('as' => 'quote', 'uses' => 'HomeController@getQuote'));
+	Route::get('/search', array('as' => 'search', 'uses' => 'HomeController@getSearch'));
+	Route::post('/search', array('as' => 'search.post', 'uses' => 'HomeController@postSearch', 'before' => 'csrf'));
 });
 
 //User Profiles

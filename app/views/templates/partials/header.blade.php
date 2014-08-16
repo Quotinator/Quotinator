@@ -20,10 +20,10 @@
 			
 			<div id='head-right'>
 				<div id='searchdiv'>
-					<form action='' method='GET'>
-						<input class='search' type='submit' value='&#9654;'/>
-						<input class='search' type='text' name='s'  placeholder="Search..." />
-					</form>
+					{{ Form::open(array('route' => 'search')) }}
+						{{ Form::submit("&#9654;", array('class' => 'search'))}}
+						{{ Form::text('search', Session::get('search', ''), array('class' => 'search', 'placeholder' => 'Search...'))}}
+					{{ Form::close() }}
 				</div>
 				@if( Auth::check() )
 					<a href='{{ URL::route('user.profile', [Auth::User()->username]) }}'>
@@ -56,3 +56,10 @@
 		</ul>
 
 		<div class='quotes'>
+		@if (count($errors) > 0)
+			<div class='quote'>
+			@foreach ($errors->all() as $error)
+				{{ $error }} <br />
+			@endforeach
+			</div>
+		@endif
