@@ -1,6 +1,6 @@
 @extends('templates.page')
 
-@section('pagetitle', 'Preferences - Account')
+@section('pagetitle', $user->username . "'s profile")
 @section('content')
 <div class='quote'>
         <img class='avatar' src='{{ $user->avatar }}' />
