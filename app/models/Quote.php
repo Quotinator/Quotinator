@@ -47,7 +47,6 @@ class Quote extends Eloquent {
 		$this->save();
 	}
 
-
 	public function favorited() {
 		return $this->belongsToMany('User', 'favorites', 'quote_id', 'user_id')->withTimestamps();
 	}
@@ -55,4 +54,10 @@ class Quote extends Eloquent {
 	public function voted() {
 		return $this->belongsToMany('User', 'votes', 'quote_id', 'user_id')->withTimestamps();
 	}
+
+	public function getQuoteAttribute($value)
+    {
+        return htmlentities($value);
+    }
+
 }
