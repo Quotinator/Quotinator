@@ -1,6 +1,6 @@
 @extends('templates.page')
 
-@section('pagetitle', 'Preferences - Account')
+@section('pagetitle', 'Dashboard - Account')
 @section('content')
 <div class='quote'>
 <p>
@@ -8,7 +8,7 @@
 		{{ $error }} <br />
 	@endforeach
 </p>
-{{ Form::open(array('action' => 'UserPreferencesController@postEditAccount')) }}
+{{ Form::open(array('action' => 'UserDashboardController@postEditAccount')) }}
     {{ Form::label('email', 'Email') }}
     {{ Form::email('email', Auth::User()->email, array('placeholder' => 'email')) }}<br />
 

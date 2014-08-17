@@ -1,15 +1,15 @@
 <?php
 
-class UserPreferencesController extends Controller
+class UserDashboardController extends Controller
 {
 	public function getMain()
 	{
-		return View::make('user.preferences.main');
+		return View::make('user.dashboard.main');
 	}
 
 	public function getEditAccount()
 	{
-		return View::make('user.preferences.account');
+		return View::make('user.dashboard.account');
 	}
 
 	public function postEditAccount()
@@ -46,14 +46,14 @@ class UserPreferencesController extends Controller
 				return Redirect::to('/');	
 			}
 		} else {
-			return Redirect::route('user.preferences.account')->withErrors(array('invalidpassword' => 'Invalid old password'));		
+			return Redirect::route('user.dashboard.account')->withErrors(array('invalidpassword' => 'Invalid old password'));		
 		}
-		return Redirect::route('user.preferences.account')->withErrors($validator);
+		return Redirect::route('user.dashboard.account')->withErrors($validator);
 	}
 
 	public function getEditProfile()
 	{
-		return View::make('user.preferences.profile');
+		return View::make('user.dashboard.profile');
 	}
 
 	public function postEditProfile()
@@ -76,9 +76,9 @@ class UserPreferencesController extends Controller
 				$user->about = Input::get('about');
 
 				$user->save();
-				return Redirect::route('user.preferences');	
+				return Redirect::route('user.dashboard');	
 			}
 		}
-		return Redirect::route('user.preferences.profile')->withErrors($validator);
+		return Redirect::route('user.dashboard.profile')->withErrors($validator);
 	}
 }

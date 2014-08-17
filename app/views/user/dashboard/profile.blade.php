@@ -1,6 +1,6 @@
 @extends('templates.page')
 
-@section('pagetitle', 'Preferences - Profile')
+@section('pagetitle', 'Dashboard - Profile')
 @section('content')
 <div class='quote'>
 <img class='avatar' title='{{ Auth::User()->username }}' src='{{ Auth::User()->avatar }}'><br />
@@ -15,7 +15,7 @@ Don't have a Gravatar account? <a href='https://en.gravatar.com/connect/?source=
 		{{ $error }} <br />
 	@endforeach
 </p>
-{{ Form::open(array('action' => 'UserPreferencesController@postEditProfile')) }}
+{{ Form::open(array('action' => 'UserDashboardController@postEditProfile')) }}
    	{{ Form::label('about', 'About me') }}
     {{ Form::textarea('about', Auth::User()->about, array('placeholder' => 'Something about yourself')) }}<br />
 

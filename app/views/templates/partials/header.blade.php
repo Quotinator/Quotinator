@@ -43,7 +43,7 @@
 
 			<li><a class='button' href='{{ URL::route('user.favorites', [Auth::User()->username]) }}'>Favorites&nbsp;<span class="fa fa-star"></span></a></li>
 			<li><a class='button' href='{{ URL::route('submit') }}'>Submit&nbsp;<span class="fa fa-pencil"></span></a></li>
-			<li><a class='button' href='{{ URL::route('user.preferences') }}'>Preferences&nbsp;<span class="fa fa-cog fa-spin"></span></a></li>
+			<li><a class='button' href='{{ URL::route('user.dashboard') }}'>Dashboard&nbsp;<span class="fa fa-cog fa-spin"></span></a></li>
 				@if( Auth::user()->can('moderate.bot'))
 					<li><a class='button' href='#'>Penguin</a></li>
 					<li><a class='button' href='#'>Herobrine</a></li>
