@@ -4,7 +4,9 @@ class UserDashboardController extends Controller
 {
 	public function getMain()
 	{
-		return View::make('user.dashboard.main');
+		$moderatequotes = Quote::orderBy('id', 'desc')->whereStatus(0);
+		$quotes = Auth::user()->quotes()->orderBy('id', 'desc')->take(10);
+		return View::make('user.dashboard.main')->with('quotes', $quotes)->with('moderatequotes', $moderatequotes);
 	}
 
 	public function getEditAccount()

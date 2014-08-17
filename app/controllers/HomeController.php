@@ -24,7 +24,11 @@ class HomeController extends BaseController
 
 	public function getQuote(Quote $quote)
 	{
-		return View::make('quote')->with('quote', $quote);
+		if ($quote->status == 1 || $quote->user->username == Auth::user()->username || Auth::user()->can(['quote.approve', 'quote.deny'])) {
+			return View::make('quote')->with('quote', $quote);
+		} else {
+			App::abort(404, 'Quote not found!');
+		}
 	}
 
 	public function getAbout()

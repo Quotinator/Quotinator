@@ -11,6 +11,13 @@
 		@else
 			<a href='?favor={{ $quote->id }}#{{ $quote->id }}' title='Make Favorite'><i class='fa fa-star-o favorite'></i></a>
 		@endif
+
+		@if($quote->status == 0)
+			<span class='pending'>[Pending] <i class='fa fa-spinner fa-spin'></i></span>
+		@elseif ($quote->status == -1)
+			<span class='denied'>[Denied] <i class='fa fa-thumbs-o-down'></i></span>
+		@endif
+
 	</span>
 	<br />
 	<span class='poster'>Posted by <a href='{{ URL::route('user.profile', [$quote->user->username]) }}'>{{ $quote->user->username }}</a></span>

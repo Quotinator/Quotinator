@@ -54,7 +54,7 @@ Route::filter('can', function($route, $request, $value)
 		// User can view page
 	} else {
 		// User Shouldn't be here
-		return Redirect::route('home');
+		return Redirect::route('home')->withErrors(array('baduser' => 'You shouldn\'t go there. It\'s a naughty place.'));
 	}
 });
 

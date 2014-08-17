@@ -8,8 +8,8 @@ class SubmitController extends BaseController {
 	public function postIndex()
 	{
 			$rules = array (
-				'title' => 'required|min:5',
-				'quote' => 'required|min:15'
+				'title' => 'required|min:3|max:32',
+				'quote' => 'required|min:5|max:10240'
 			);
 
 		$validator = Validator::make(Input::all(), $rules);
