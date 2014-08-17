@@ -34,6 +34,7 @@
 		</div>
 
 		<ul class='nav clear'>
+
 			<li><a class='button' href='{{ URL::route('home') }}'>Home&nbsp;<span class="fa fa-home"></span></a></li>
 			<li><a class='button' href='{{ URL::route('top') }}'>Top&nbsp;<span class="fa fa-arrow-up"></span></a></li>
 			<li><a class='button' href='{{ URL::route('random') }}'>Random&nbsp;<span class="fa fa-random"></span></a></li>
@@ -54,7 +55,7 @@
 			<li><a class='button eye-catching' href='{{ URL::route('register') }}'>Register</a></li>
 			@endif
 		</ul>
-
+		<h2>@yield('pagetitle')</h2>
 		<div class='quotes'>
 		@if (count($errors) > 0)
 			<div class='quote'>

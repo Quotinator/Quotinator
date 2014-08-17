@@ -3,13 +3,7 @@
 @section('pagetitle', 'Submit')
 
 @section('content')
-<!-- if there are login errors, show them here -->
-<p>
-	{{ $errors->first('title') }}
-	{{ $errors->first('quote') }}
-	{{ $errors->first('failed') }}
-</p>
-
+<div class='quote'>
 {{ Form::open(array('url' => 'submit')) }}
 	{{ Form::token() }}
 	{{ Form::label('title', 'Title') }}
@@ -20,4 +14,5 @@
 
 {{ Form::submit('Submit!') }}
 {{ Form::close() }}
+</div>
 @stop

@@ -2,6 +2,7 @@
 
 @section('pagetitle', 'Preferences - Account')
 @section('content')
+<div class='quote'>
 <p>
 	@foreach($errors->all() as $error)
 		{{ $error }} <br />
@@ -22,4 +23,5 @@
     <i>Current password is required</i><br />
     {{ Form::submit('Save', array('class' => 'save')) }}<br />
 {{ Form::close() }}
+</div>
 @stop

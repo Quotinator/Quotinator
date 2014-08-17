@@ -3,14 +3,7 @@
 @section('pagetitle', 'Login')
 
 @section('content')
-
-<!-- if there are login errors, show them here -->
-<p>
-	{{ $errors->first('username') }}
-	{{ $errors->first('password') }}
-	{{ $errors->first('failed') }}
-</p>
-
+<div class='quote'>
 {{ Form::open(array('url' => 'login')) }}
 	{{ Form::label('username', 'Username') }}
 	{{ Form::text('username', Input::old('username'), array('placeholder' => 'Quotinator', 'autofocus')) }}
@@ -23,4 +16,5 @@
 <p>
 <a href="{{ URL::to('password/remind') }}">Forgot your password?</a>
 </p>
+</div>
 @stop

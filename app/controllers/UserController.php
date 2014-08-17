@@ -3,7 +3,8 @@
 class UserController extends BaseController
 {
 	public function getProfile(User $user) {
-		return View::make('user.profile')->with('user', $user);
+		$quotes = $user->quotes()->orderBy('id', 'desc')->whereStatus(1)->take(3);
+		return View::make('user.profile')->with('user', $user)->with('quotes', $quotes);
 	}
 	
 	public function getQuotes(User $user) {

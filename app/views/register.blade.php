@@ -3,13 +3,7 @@
 @section('pagetitle', 'Register')
 
 @section('content')
-
-<!-- if there are login errors, show them here -->
-<p>
-	@foreach($errors->all() as $error)
-		{{ $error }} <br />
-	@endforeach
-</p>
+<div class='quote'>
 
 {{ Form::open(array('url' => 'register')) }}
 	{{ Form::label('username', 'Username') }}
@@ -29,4 +23,5 @@
 <p>
 <a href="{{ URL::to('password/remind') }}">Forgot your password?</a>
 </p>
+</div>
 @stop
