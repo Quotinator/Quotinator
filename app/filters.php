@@ -164,6 +164,7 @@ Route::filter('moderate', function() {
 				if ($quote) {
 					$quote->status = 1;
 					$quote->save();
+					$response = Event::fire('quote.approved', array($quote));
 				}
 			}
 			if (Input::has('deny')) {
