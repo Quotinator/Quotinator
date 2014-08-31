@@ -179,32 +179,32 @@ Route::filter('moderate', function() {
 });
 
 
-Route::filter('favorite', function() {
-	if (Auth::check()) {
-		$rules = array(
-			'favor' => 'integer|numeric',
-			'unfavor' => 'integer|numeric'
-		);
-		$validator = Validator::make(Input::all(), $rules);
-		if ($validator->passes()) {
-			if (Input::has('favor')) {
-				$id = Input::get('favor');
-				$quote = Quote::find($id);
-				if ($quote) {
-					if (!Auth::user()->favorites->contains($id)) {
-						Auth::user()->favorites()->attach($quote);
-					}
-				}
-			}
-			if (Input::has('unfavor')) {
-				$id = Input::get('unfavor');
-				$quote = Quote::find($id);
-				if ($quote) {
-					if (Auth::user()->favorites->contains($id)) {
-						Auth::user()->favorites()->detach($quote);
-					}
-				}
-			}
-		}
-	}
-});
+// Route::filter('favorite', function() {
+// 	if (Auth::check()) {
+// 		$rules = array(
+// 			'favor' => 'integer|numeric',
+// 			'unfavor' => 'integer|numeric'
+// 		);
+// 		$validator = Validator::make(Input::all(), $rules);
+// 		if ($validator->passes()) {
+// 			if (Input::has('favor')) {
+// 				$id = Input::get('favor');
+// 				$quote = Quote::find($id);
+// 				if ($quote) {
+// 					if (!Auth::user()->favorites->contains($id)) {
+// 						Auth::user()->favorites()->attach($quote);
+// 					}
+// 				}
+// 			}
+// 			if (Input::has('unfavor')) {
+// 				$id = Input::get('unfavor');
+// 				$quote = Quote::find($id);
+// 				if ($quote) {
+// 					if (Auth::user()->favorites->contains($id)) {
+// 						Auth::user()->favorites()->detach($quote);
+// 					}
+// 				}
+// 			}
+// 		}
+// 	}
+// });

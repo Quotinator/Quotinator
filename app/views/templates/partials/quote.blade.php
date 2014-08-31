@@ -7,9 +7,9 @@
 		<a href='{{ URL::route('quote', [$quote->id]) }}'>#{{ $quote->id }}</a>
 		{{ $quote->title }}
 		@if($quote->isFavored())
-			<a href='?unfavor={{ $quote->id }}#{{ $quote->id }}' title='Remove Favorite'><i class='fa fa-star favorite'></i></a>
+			<a target="_blank" href='{{ URL::action('QuoteController@getUnfavorite', [$quote->id]) }}' title='Remove Favorite'><i class='fa fa-star favorite'></i></a>
 		@else
-			<a href='?favor={{ $quote->id }}#{{ $quote->id }}' title='Make Favorite'><i class='fa fa-star-o favorite'></i></a>
+			<a target="_blank" href='{{ URL::action('QuoteController@getFavorite', [$quote->id]) }}' title='Make Favorite'><i class='fa fa-star-o favorite'></i></a>
 		@endif
 
 		@if($quote->status == 0)

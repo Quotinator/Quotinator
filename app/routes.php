@@ -30,7 +30,7 @@ Route::model('quote', 'Quote', function()
 
 
 //Quote listings
-Route::group(array('before' => 'votes|favorite'), function () {
+Route::group(array('before' => 'votes'), function () {
 	Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex', 'before' => 'moderate'));
 	Route::get('/random', array('as' => 'random', 'uses' => 'HomeController@getRandom'));
 	Route::get('/top', array('as' => 'top', 'uses' => 'HomeController@getTop'));
@@ -60,10 +60,16 @@ Route::group(array('before' => 'guest'), function ()
 });
 
 //Auth Pages
-Route::group(array('before' => 'auth'), function () 
+Route::group(array('before' => 'auth'), function ()
 {
-	Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
+	Route::get('/{quote}/favorite', array('as' => 'favorite', 'uses' => 'QuoteController@getFavorite'));
+	Route::get('/{quote}/unfavorite', array('as' => 'unfavorite', 'uses' => 'QuoteController@getUnfavorite'));
 
+	Route::get('/{quote}/upvote', array('as' => 'upvote', 'uses' => 'QuoteController@getUpvote'));
+	Route::get('/{quote}/downvote', array('as' => 'downvote', 'uses' => 'QuoteController@getDownvote'));
+	Route::get('/{quote}/unvote', array('as' => 'unvote', 'uses' => 'QuoteController@getUnvote'));
+
+	Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
 	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@getIndex'));
 	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@postIndex'));
 });
