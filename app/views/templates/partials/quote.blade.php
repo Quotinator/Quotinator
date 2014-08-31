@@ -24,12 +24,12 @@
 	<br />
 	<em>{{ $quote->created_at }}</em>
 	<div class='votes'>
-		<a href='?upvote={{ $quote->id }}#{{ $quote->id }}' class='upvotes'><i class='fa fa-arrow-up'></i>{{ $quote->upVotes() }}</a>
+		<a target="_blank" href='{{ URL::action('QuoteController@getUpvote', [$quote->id]) }}' class='upvotes'><i class='fa fa-arrow-up'></i>{{ $quote->upVotes() }}</a>
 		&nbsp;|&nbsp;
-		<a href='?downvote={{ $quote->id }}#{{ $quote->id }}' class='downvotes'>{{ $quote->downVotes() }}<i class='fa fa-arrow-down'></i></a>
+		<a target="_blank" href='{{ URL::action('QuoteController@getDownvote', [$quote->id]) }}' class='downvotes'>{{ $quote->downVotes() }}<i class='fa fa-arrow-down'></i></a>
 		@if($quote->didAuthVote())
 		&nbsp;|&nbsp;
-		<a href='?unvote={{ $quote->id }}#{{ $quote->id }}' class='unvote' title='Remove Vote'><i class='fa fa-eraser'></i></a>
+		<a target="_blank" href='{{ URL::action('QuoteController@getUnvote', [$quote->id]) }}' class='unvote' title='Remove Vote'><i class='fa fa-eraser'></i></a>
 		@endif
 	</div>
 	@if(Auth::check() && Auth::user()->can(['quote.approve', 'quote.deny']) && $quote->status == 0)

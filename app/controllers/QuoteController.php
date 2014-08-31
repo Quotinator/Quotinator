@@ -36,6 +36,7 @@ class QuoteController extends BaseController
 		}
 
 		$quote->updateVoteConfidence();
+		return Redirect::route('quote', array($quote->id))->withErrors('You have upvoted!');
 	}
 
 	public function getDownvote(Quote $quote)
@@ -51,6 +52,7 @@ class QuoteController extends BaseController
 			$vuser->pivot->save();
 		}
 		$quote->updateVoteConfidence();
+		return Redirect::route('quote', array($quote->id))->withErrors('You have downvoted!');
 	}
 	
 	public function getUnvote(Quote $quote)
@@ -60,6 +62,7 @@ class QuoteController extends BaseController
 		{
 			$quote->voted()->detach(Auth::user());
 			$quote->updateVoteConfidence();
+			return Redirect::route('quote', array($quote->id))->withErrors('You have removed your vote!');
 		}
 	}
 
