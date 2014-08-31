@@ -20,6 +20,10 @@ class RegistrationController extends BaseController
 			$user->email = Input::get('email');
 			$user->password = Hash::make(Input::get('password'));
 			$user->save();
+
+			$role = Role::where('name', 'User')->first();
+			$user->roles()->attach($role);
+			
 			Auth::login($user);
 			return Redirect::to('/');	
 		}
