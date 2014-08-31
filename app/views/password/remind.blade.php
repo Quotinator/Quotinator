@@ -3,6 +3,7 @@
 @section('pagetitle', 'Send Password Reset')
 
 @section('content')
+<div class='quote'>
 {{ Session::get('error') }}
 {{ Session::get('status') }}
 {{ Form::open(array('action' => 'RemindersController@postRemind')) }}
@@ -12,4 +13,5 @@
     {{ Form::submit('Send Reminder') }}<br />
 
 {{ Form::close() }}
+</div>
 @stop
