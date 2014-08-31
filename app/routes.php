@@ -13,7 +13,7 @@
 
 //Patterns
 Route::pattern('quote', '[0-9]+');
-Route::pattern('user', '[A-Za-z0-9]+');
+Route::pattern('user', '[A-Za-z0-9_]+');
 
 //Bindings
 Route::bind('user', function($value, $route)
