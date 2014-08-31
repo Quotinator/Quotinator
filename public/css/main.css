@@ -368,7 +368,6 @@ input:not(.search), select, textarea {
 }
 
 .col-2 {
-	height: 500px;
 	float: left;
 	width: 49%;
 	margin: 0.5%;
