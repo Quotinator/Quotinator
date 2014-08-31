@@ -11,7 +11,9 @@
 		</ul>
 	</div>
 	<div class='clear full-width'>
-		<img class='DO' src='{{ asset('img/DO_Proudly_Hosted_Badge_White-0f0151a4.png') }}' />
+		<a target="_BLANK" href="https://www.digitalocean.com/?refcode=7426671a37b0">
+			<img class='DO' src='{{ asset('img/DO_Proudly_Hosted_Badge_White-0f0151a4.png') }}' />
+		</a>
 	</div>
 </div>
 </div>
