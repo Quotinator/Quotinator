@@ -86,4 +86,4 @@ Route::group(array('prefix' => 'dashboard', 'before' => 'auth'), function()
 
 //Info Pages
 Route::get('/about', array('as' => 'about', 'uses' => 'HomeController@getAbout'));
-Route::get('/help', array('as' => 'help', 'uses' => function() { return ''; }));
+Route::get('/help', array('as' => 'help', 'uses' =>  'HomeController@getHelp'));

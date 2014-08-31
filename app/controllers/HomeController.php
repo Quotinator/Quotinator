@@ -36,6 +36,11 @@ class HomeController extends BaseController
 		return View::make('about')->with('pagetitle', 'About');
 	}
 
+	public function getHelp()
+	{
+		return View::make('help')->with('pagetitle', 'Help');
+	}
+
 	public function getSearch() {
 		if (Session::has('search')) {
 			$words = explode(' ', Session::get('search'));
