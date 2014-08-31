@@ -29,6 +29,7 @@ $app = new Illuminate\Foundation\Application;
 //));
 
 $env = $app->detectEnvironment(function(){
+	if (getenv('TRAVIS')) return 'testing';
 	return require dirname(__FILE__).'/environment.php';
 });
 

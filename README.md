@@ -1,5 +1,5 @@
 ## Quotinator
-
+[![Build Status](https://travis-ci.org/Quotinator/Quotinator.svg?branch=master)](https://travis-ci.org/Quotinator/Quotinator)
 
 
 ### License
