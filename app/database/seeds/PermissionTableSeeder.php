@@ -12,10 +12,11 @@ class PermissionTableSeeder extends Seeder {
         $permissions[]['node'] = 'quote.favorite';
         $permissions[]['node'] = 'user.preferences';
         $permissions[]['node'] = 'site.preferences';
-        $role = Role::where('name', '=', 'administrator')->first();
+        $role = Role::where('name', '=', 'Administrator')->first();
         foreach ($permissions as $permission) {
             $perm = new Permission;
             $perm->node = $permission['node'];
+            $perm->description = ucfirst(str_replace('.', ' ', $permission['node']));
             $perm->save();
             $role->permissions()->attach($perm);
         }

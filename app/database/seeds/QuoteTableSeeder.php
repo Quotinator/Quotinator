@@ -9,6 +9,7 @@ class QuoteTableSeeder extends Seeder {
         $quote->title = 'Test Quote';
         $quote->quote = 'This is a quote';
         $quote->status = 0;
+        $quote->confidence = 0;
 
         $user = User::where('username', '=', 'tjbenator')->first();
 		$user->quotes()->save($quote);
@@ -17,7 +18,8 @@ class QuoteTableSeeder extends Seeder {
         $quote->title = 'Test Quote #2';
         $quote->quote = 'This is a another quote';
         $quote->status = 0;
-
+        $quote->confidence = 0;
+        
         $user = User::where('username', '=', 'tjbenator')->first();
 		$user->quotes()->save($quote);
 
