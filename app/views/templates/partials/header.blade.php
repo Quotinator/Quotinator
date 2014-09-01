@@ -2,7 +2,7 @@
 <html lang='en'>
 <head>
 	<meta charset='utf-8'>
-	<title>{{ Config::get('settings.site_title') }}</title>
+	<title>{{ (isset($title) ? $title . ' | ' : null) . Config::get('settings.site_title') }}</title>
 
 	<!-- Custom styling -->
 	{{ HTML::style('css/main.css'); }}
