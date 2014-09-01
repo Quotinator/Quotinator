@@ -1,17 +1,20 @@
 <?php
 
-class UserDashboardController extends Controller
+class UserDashboardController extends PageController
 {
 	public function getMain()
 	{
 		$moderatequotes = Quote::orderBy('id', 'desc')->whereStatus(0);
 		$quotes = Auth::user()->quotes()->orderBy('id', 'desc')->take(10);
-		return View::make('user.dashboard.main')->with('quotes', $quotes)->with('moderatequotes', $moderatequotes);
+
+		$this->layout->title = 'Dashboard';
+		$this->layout->nest('content', 'user.dashboard.main', ['quotes' => $quotes, 'moderatequotes' => $moderatequotes]);
 	}
 
 	public function getEditAccount()
 	{
-		return View::make('user.dashboard.account');
+		$this->layout->title = 'Dashboard - Account';
+		$this->layout->content = View::make('user.dashboard.account');
 	}
 
 	public function postEditAccount()
@@ -55,7 +58,8 @@ class UserDashboardController extends Controller
 
 	public function getEditProfile()
 	{
-		return View::make('user.dashboard.profile');
+		$this->layout->title = 'Dashboard - Profile';
+		$this->layout->content = View::make('user.dashboard.profile');
 	}
 
 	public function postEditProfile()

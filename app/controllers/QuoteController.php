@@ -1,5 +1,5 @@
 <?php
-class QuoteController extends BaseController
+class QuoteController extends PageController
 {
 	public function getFavorite(Quote $quote)
 	{

@@ -1,7 +1,3 @@
-@extends('templates.page')
-
-@section('pagetitle', $user->username . "'s profile")
-@section('content')
 <div class='quote'>
         <img class='avatar' src='{{ $user->avatar }}' />
 		<span class='title'></span>
@@ -13,13 +9,10 @@
 			<pre>{{ $user->about }}</pre>
 		@endif
 </div>
-@endsection
 
-@section('content')
 @if($quotes->count() > 0)
 	<h3>{{ $user->username }}'s most recent submissions</h3>
 	@foreach($quotes->get() as $quote)
 		@include('templates.partials.quote')
 	@endforeach
 @endif
-@append

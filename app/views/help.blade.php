@@ -1,7 +1,3 @@
-@extends('templates.page')
-
-@section('pagetitle', $pagetitle)
-@section('content')
 <div class='quote'>
 	<h3>Registering</h3>
 	<ul>
@@ -31,7 +27,4 @@
 		<li>If you have forgotten your password please visit <a href="{{ URL::to('password/remind') }}">Forgot your password?</a>. A password reset link will be sent to the email you provided at registration.</li>
 		<li>If you are still having troubles, please contact <a href='https://twitter.com/tjbenator'>@tjbenator</a>.</li>
 	</ul>
-
-
 </div>
-@stop

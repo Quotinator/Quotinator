@@ -1,8 +1,3 @@
-@extends('templates.page')
-
-@section('pagetitle', 'Register')
-
-@section('content')
 <div class='quote'>
 
 {{ Form::open(array('url' => 'register')) }}
@@ -24,4 +19,3 @@
 <a href="{{ URL::to('password/remind') }}">Forgot your password?</a>
 </p>
 </div>
-@stop

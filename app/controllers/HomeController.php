@@ -1,31 +1,38 @@
 <?php
 
-class HomeController extends BaseController
+class HomeController extends PageController
 {
-
 	public function getIndex()
 	{
+		$this->layout->title = 'Home';
 		if (Auth::check() && Auth::user()->can(['quote.approve', 'quote.deny'])) {
-			return View::make('home')->with('pagetitle', 'Home')->with('quotes', Quote::orderBy('id', 'desc')->where('status', '!=', -1)->paginate(Config::get('settings.per_page')));
+			$quotes = Quote::orderBy('id', 'desc')->where('status', '!=', -1)->paginate(Config::get('settings.per_page'));
 		} else {
-			return View::make('home')->with('pagetitle', 'Home')->with('quotes', Quote::orderBy('id', 'desc')->whereStatus(1)->paginate(Config::get('settings.per_page')));
+			$quotes = Quote::orderBy('id', 'desc')->whereStatus(1)->paginate(Config::get('settings.per_page'));
 		}
+		$this->layout->nest('content', 'home', ['quotes' => $quotes]);
 	}
 
 	public function getRandom()
 	{
-		return View::make('random')->with('pagetitle', 'Home')->with('quotes', Quote::orderByRaw('RAND()')->whereStatus(1)->paginate(Config::get('settings.per_page')));	
+		$this->layout->title = 'Random';
+		$quotes = Quote::orderByRaw('RAND()')->whereStatus(1)->paginate(Config::get('settings.per_page'));
+
+		$this->layout->nest('content', 'random', ['quotes' => $quotes]);
 	}
 
 	public function getTop()
 	{
-		return View::make('home')->with('quotes', Quote::orderBy('confidence', 'desc')->whereStatus(1)->paginate(Config::get('settings.per_page')));
+		$this->layout->title = 'Top';
+		$quotes = Quote::orderBy('confidence', 'desc')->whereStatus(1)->paginate(Config::get('settings.per_page'));
+		$this->layout->nest('content', 'home', ['quotes' => $quotes]);
 	}	
 
 	public function getQuote(Quote $quote)
 	{
 		if ($quote->status == 1 || $quote->user->username == Auth::user()->username || Auth::user()->can(['quote.approve', 'quote.deny'])) {
-			return View::make('quote')->with('quote', $quote);
+			$this->layout->title = 'Quote';
+			$this->layout->nest('content', 'quote', ['quote' => $quote]);
 		} else {
 			App::abort(404, 'Quote not found!');
 		}
@@ -33,12 +40,14 @@ class HomeController extends BaseController
 
 	public function getAbout()
 	{
-		return View::make('about')->with('pagetitle', 'About');
+		$this->layout->title = 'About';
+		$this->layout->content = View::make('about');
 	}
 
 	public function getHelp()
 	{
-		return View::make('help')->with('pagetitle', 'Help');
+		$this->layout->title = 'Help';
+		$this->layout->content = View::make('help');
 	}
 
 	public function getSearch() {
@@ -57,9 +66,11 @@ class HomeController extends BaseController
 			})->paginate(Config::get('settings.per_page'));
 			$quotesCount = $quotes->count();
 
-			return View::make('search')->with('quotes', $quotes)->with('count', $quotesCount)->with('terms', Session::get('search'));
+			//$this->layout->title = 'Search';
+			$this->layout->nest('content', 'search', ['quotes' => $quotes, 'count' => $quotesCount, 'terms' => Session::get('search')]);
+		} else {
+			return Redirect::to('/')->withErrors(array('usesearch' => 'Use the search box, silly :)'));
 		}
-		return Redirect::to('/')->withErrors(array('usesearch' => 'Use the search box, silly :)'));
 	}
 
 	public function postSearch() {

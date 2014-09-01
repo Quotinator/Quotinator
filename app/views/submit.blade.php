@@ -1,8 +1,3 @@
-@extends('templates.page')
-
-@section('pagetitle', 'Submit')
-
-@section('content')
 <div class='quote'>
 {{ Form::open(array('url' => 'submit')) }}
 	{{ Form::token() }}
@@ -15,4 +10,3 @@
 {{ Form::submit('Submit!') }}
 {{ Form::close() }}
 </div>
-@stop

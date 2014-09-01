@@ -55,7 +55,7 @@
 			<li><a class='button eye-catching' href='{{ URL::route('register') }}'>Register</a></li>
 			@endif
 		</ul>
-		<h2>@yield('pagetitle')</h2>
+		<h2>{{ (isset($title) ? $title : null) }}</h2>
 		<div class='quotes'>
 		@if (count($errors) > 0)
 			<div class='quote'>

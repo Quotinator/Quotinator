@@ -1,21 +1,24 @@
 <?php
 
-class UserController extends BaseController
+class UserController extends PageController
 {
 	public function getProfile(User $user) {
+		$this->layout->title = $user->username . "'s profile";
 		$quotes = $user->quotes()->orderBy('id', 'desc')->whereStatus(1)->take(3);
-		return View::make('user.profile')->with('user', $user)->with('quotes', $quotes);
+		$this->layout->nest('content', 'user.profile', ['user' => $user, 'quotes' => $quotes]);
 	}
 	
 	public function getQuotes(User $user) {
+		$this->layout->title = $user->username . "'s submitted quotes";
 		$quotes = $user->quotes()->orderBy('id', 'desc')->whereStatus(1)->paginate(Config::get('per_page'));
 		$quoteCount = $quotes->count();
-		return View::make('user.quotes')->with('user', $user)->with('quotes', $quotes)->with('count', $quoteCount);
+		$this->layout->nest('content', 'user.quotes', ['user' => $user, 'quotes' => $quotes, 'count' => $quoteCount]);
 	}
 
 	public function getFavorites(User $user) {
+		$this->layout->title = $user->username . "'s favorites";
 		$quotes = $user->favorites()->orderBy('id', 'desc')->whereStatus(1)->paginate(Config::get('per_page'));
-		$quotesCount = $quotes->count();
-		return View::make('user.favorites')->with('user', $user)->with('quotes', $quotes)->with('count', $quotesCount);
+		$quoteCount = $quotes->count();
+		$this->layout->nest('content', 'user.favorites', ['user' => $user, 'quotes' => $quotes, 'count' => $quoteCount]);	
 	}
 }

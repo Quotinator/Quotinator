@@ -1,13 +1,4 @@
-@extends('templates.page')
-
-@section('pagetitle', 'Dashboard - Account')
-@section('content')
 <div class='quote'>
-<p>
-	@foreach($errors->all() as $error)
-		{{ $error }} <br />
-	@endforeach
-</p>
 {{ Form::open(array('action' => 'UserDashboardController@postEditAccount')) }}
     {{ Form::label('email', 'Email') }}
     {{ Form::email('email', Auth::User()->email, array('placeholder' => 'email')) }}<br />
@@ -24,4 +15,3 @@
     {{ Form::submit('Save', array('class' => 'save')) }}<br />
 {{ Form::close() }}
 </div>
-@stop

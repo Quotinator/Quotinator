@@ -1,8 +1,9 @@
 <?php
-class SubmitController extends BaseController {
+class SubmitController extends PageController {
 	public function getIndex()
 	{
-		return View::make('submit');
+		$this->layout->title = 'Submit';
+		$this->layout->content = View::make('submit');
 	}
 
 	public function postIndex()

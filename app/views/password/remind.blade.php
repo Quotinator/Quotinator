@@ -1,8 +1,3 @@
-@extends('templates.page')
-
-@section('pagetitle', 'Send Password Reset')
-
-@section('content')
 <div class='quote'>
 {{ Session::get('error') }}
 {{ Session::get('status') }}
@@ -14,4 +9,3 @@
 
 {{ Form::close() }}
 </div>
-@stop
