@@ -11,5 +11,6 @@ class ApprovedQuoteHandler
 
 		$message = "#$id ($username): $title $url";
 		Twitter::postTweet(array('status' => $message, 'format' => 'json'));
+		Irc::message($message);
 	}
 }

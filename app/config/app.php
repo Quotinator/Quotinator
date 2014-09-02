@@ -123,6 +123,7 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
 		'Thujohn\Twitter\TwitterServiceProvider',
+		'Tjbenator\Irc\IrcServiceProvider',
 	),
 
 	/*
@@ -191,6 +192,7 @@ return array(
 		'View'            => 'Illuminate\Support\Facades\View',
 
 		'Twitter' => 'Thujohn\Twitter\TwitterFacade',
+		'Irc' => 'Tjbenator\Irc\Facades\Irc',
 
 	),
 
