@@ -100,6 +100,15 @@ Route::filter('csrf', function()
 	}
 });
 
+App::missing(function($exception)
+{
+	if (Config::get('app.debug')) {
+    	return;
+    }
+
+    return Redirect::route('home')->withErrors("<strong>Error 404:</strong> The page you tried to navigate to does not exist!");
+});
+
 
 Route::filter('votes', function() {
 	if (Auth::check()) {
