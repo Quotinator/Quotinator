@@ -4,3 +4,7 @@ php:
 
 install:
   - composer install --dev
+
+notifications:
+  irc:
+    - "serenitygames.net#dev"
