@@ -75,7 +75,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 			return $url;
 		};
 
-    	return $gravatar($this->attributes['email'], 100, 'retro', 'r');
+    	return htmlentities($gravatar($this->attributes['email'], 100, 'retro', 'r'));
 	}
 
 }
