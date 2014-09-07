@@ -38,6 +38,15 @@ class HomeController extends PageController
 		}
 	}
 
+	public function getUsers() {
+		$this->layout->title = 'Users';
+		$users = User::orderBy('id', 'asc');
+		$userCount = $users->count();
+		$paginate = $users->paginate(100);
+
+		$this->layout->nest('content', 'users', ['users' => $paginate, 'count' => $userCount]);
+	}
+
 	public function getAbout()
 	{
 		$this->layout->title = 'About';

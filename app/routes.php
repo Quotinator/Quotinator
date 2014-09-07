@@ -69,6 +69,8 @@ Route::group(array('before' => 'auth'), function ()
 	Route::get('/{quote}/downvote', array('as' => 'downvote', 'uses' => 'QuoteController@getDownvote'));
 	Route::get('/{quote}/unvote', array('as' => 'unvote', 'uses' => 'QuoteController@getUnvote'));
 
+	Route::get('/users', array('as' => 'users', 'uses' => 'HomeController@getUsers'));
+
 	Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
 	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@getIndex'));
 	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@postIndex'));

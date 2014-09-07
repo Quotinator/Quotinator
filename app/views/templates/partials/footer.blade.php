@@ -5,6 +5,7 @@
 	</div>
 	<div class='col-2'>
 		<ul class='nav'>
+			<li><a href='{{ URL::route('users') }}'>Users</a></li>
 			<li><a href='https://github.com/Quotinator/Quotinator/issues'>Bugs</a></li>
 			<li><a href='{{ URL::route('about') }}'>About</a></li>
 			<li><a class='button' href='{{ URL::route('help') }}'>Help&nbsp;<span class="fa fa-book"></span>&nbsp;</a></li>
