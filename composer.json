@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"thujohn/twitter": "dev-master",
-		"tjbenator/irc": "dev-master"
+		"tjbenator/irc": "dev-master",
+		"iamcal/lib_autolink": "dev-master"
 	},
 	"autoload": {
 		"classmap": [

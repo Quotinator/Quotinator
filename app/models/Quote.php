@@ -57,7 +57,7 @@ class Quote extends Eloquent {
 
 	public function getQuoteAttribute($value)
     {
-        return htmlentities($value);
+        return autolink(htmlentities($value), 50, ' rel="nofollow" target="_blank"');
     }
 
 }

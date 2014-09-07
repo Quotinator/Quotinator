@@ -1,0 +1,5 @@
+<?php
+
+/**
+ * For helper functions
+ */
