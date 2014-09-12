@@ -9,6 +9,9 @@
 		"tjbenator/irc": "dev-master",
 		"iamcal/lib_autolink": "dev-master"
 	},
+	"require-dev": {
+        	"satooshi/php-coveralls": "~0.6.0"
+   	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
