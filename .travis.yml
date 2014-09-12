@@ -8,3 +8,6 @@ install:
 notifications:
   irc:
     - "serenitygames.net#dev"
+    
+after_script:
+  - php vendor/bin/coveralls -v
