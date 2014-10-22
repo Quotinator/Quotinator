@@ -20,7 +20,7 @@
 
 	</span>
 	<br />
-	<span class='poster'>Posted by <a href='{{ URL::route('user.profile', [$quote->user->username]) }}'>{{ $quote->user->username }}</a></span>
+	<span class='poster'>Quoted by <a href='{{ URL::route('user.profile', [$quote->user->username]) }}'>{{ $quote->user->username }}</a></span>
 	<br />
 	<em>{{ $quote->created_at }}</em>
 	<div class='votes'>
