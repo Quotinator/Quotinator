@@ -23,6 +23,9 @@ body, input, textarea {
 
 body {
 	background: #333 url('../img/background.png') no-repeat left top;
+	background-size: 100%;
+	background-attachment: fixed;
+	background-position: -200%, -20%;
 	background-color: #333;
 	color: #FFFFFF;
 }
@@ -32,6 +35,15 @@ h2 {font-size:2em;}
 h3 {
 	font-size:2em;
 	margin-top: 20px;
+}
+
+h1, h2, h3, .subtitle {
+   color: white;
+   text-shadow:
+       -1px -1px 10px #000,  
+       1px -1px 10px #000,
+       -1px 1px 10px #000,
+       1px 1px 10px #000;
 }
 
 #wrap {
@@ -46,8 +58,9 @@ h3 {
 
 .quotes .quote, .pagination {
 	background-color: #181718;
-	border: 1px solid orange;
-	border-radius:25px;
+	background-color: rgba(0, 0, 0, 0.925);
+	border: 1px solid white;
+	/** border-radius:25px; **/
 	padding: 7px;
 	padding-left: 15px;
 	padding-right: 15px;
@@ -78,7 +91,7 @@ ul.pagination li:last-child:after {
 }
 
 ul.pagination li a:hover, ul.pagination li.active span {
-	background-color: orange;
+	background-color: white;
 	color: black;
 	border-radius:25px;
 }
@@ -102,10 +115,17 @@ ul.nav li a {
 	padding: 5px;
 	text-align: left;
 	font-weight: bold;
+	text-shadow:
+		-1px -1px 10px #000,  
+		1px -1px 10px #000,
+		-1px 1px 10px #000,
+		1px 1px 10px #000;
+
 }
 
 ul.nav li a:hover {
-	background-color: orange;
+	text-shadow: none;
+	background-color: white;
 	color: black;
 	border-radius: 25px;
 }
@@ -130,7 +150,7 @@ ul.nav li a:hover {
 	color: #FFF;
 	border: transparent;
 	background-color: transparent;
-	text-shadow: 2px 2px 1px #666;
+	/** text-shadow: 2px 2px 1px #666; **/
 
 }
 
@@ -145,7 +165,7 @@ ul.nav li a:hover {
 }
 
 .subtitle {
-	text-shadow: 2px 2px 1px #666;
+	/** text-shadow: 2px 2px 1px #666; **/
 	font-size: 2em;
 }
 
@@ -319,18 +339,18 @@ input[type="email"] {
 }
 
 .search[type=submit]:active {
-	background: orange;
+	background: white;
 	border: 1px solid white;
 }
 .search[type=text], .search[type=submit]{
 	float:right;
 	padding:6px 15px 6px 15px;
-	border: 1px solid orange;
+	border: 1px solid white;
 	outline: none;
 }
 
 .search[type=text]:focus {
-	background-color: orange;
+	background-color: white;
 	border: 1px solid white;
 	font-weight: bold;
 }
@@ -354,7 +374,7 @@ input:not(.search), select, textarea {
 	text-align: center;
 	height: 90px;
 	background-color: #181718;
-	border: 1px solid orange;
+	border: 1px solid white;
 }
 
 .clear {
