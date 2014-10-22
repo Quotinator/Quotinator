@@ -5,6 +5,8 @@
 	</div>
 	<div class='col-2'>
 		<ul class='nav'>
+			<li><a href='https://twitter.com/Quotinator'><i class='fa fa-twitter'></i></a></li>
+			<li><a href='https://plus.google.com/109145709302907172859' rel='publisher'><i class='fa fa-google-plus'></i></a></li>
 			<li><a href='{{ URL::route('users') }}'>Users</a></li>
 			<li><a href='https://github.com/Quotinator/Quotinator/issues'>Bugs</a></li>
 			<li><a href='{{ URL::route('about') }}'>About</a></li>
