@@ -1,6 +1,6 @@
 <div class='quote'>
-<a href='{{ URL::route('user.dashboard.account')}}'>Edit Account<span class='fa fa-cog fa-spin'></span></a><br />
-<a href='{{ URL::route('user.dashboard.profile')}}'>Edit Profile<span class='fa fa-cog fa-spin'></span></a>
+<a href='{{ URL::route('user.dashboard.account')}}'>Edit Account<span class='fa fa-cog'></span></a><br />
+<a href='{{ URL::route('user.dashboard.profile')}}'>Edit Profile<span class='fa fa-cog'></span></a>
 </div>
 <div class='quote clear col-2'>
 <strong>Quote Status</strong><br />
