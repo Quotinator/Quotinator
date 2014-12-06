@@ -171,16 +171,20 @@ Route::filter('moderate', function() {
 			if (Input::has('approve')) {
 				$quote = Quote::find(Input::get('approve'));
 				if ($quote) {
-					$quote->status = 1;
-					$quote->save();
-					$response = Event::fire('quote.approved', array($quote));
+					if ($quote->status != 1) {
+						$quote->status = 1;
+						$quote->save();
+						$response = Event::fire('quote.approved', array($quote));
+					}
 				}
 			}
 			if (Input::has('deny')) {
 				$quote = Quote::find(Input::get('deny'));
 				if ($quote) {
-					$quote->status = -1;
-					$quote->save();
+					if ($quote->status != -1) {
+						$quote->status = -1;
+						$quote->save();
+					}
 				}
 			}
 		}
