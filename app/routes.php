@@ -72,8 +72,10 @@ Route::group(array('before' => 'auth'), function ()
 	Route::get('/users', array('as' => 'users', 'uses' => 'HomeController@getUsers'));
 
 	Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
-	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@getIndex'));
-	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'SubmitController@postIndex'));
+	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'EditorController@getIndex'));
+	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'EditorController@postIndex'));
+	Route::get('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit', 'uses' => 'EditorController@getIndex'));
+	Route::post('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit', 'uses' => 'EditorController@postIndex'));
 });
 
 Route::group(array('prefix' => 'dashboard', 'before' => 'auth'), function()
