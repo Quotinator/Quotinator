@@ -24,7 +24,7 @@ class PermissionTableSeeder extends Seeder {
 
         foreach ($permissions as $permission)
         {
-            $perm = Permission::firstOrCreate(['node' => $permission['node']]);
+            $perm = Permission::firstOrNew(['node' => $permission['node']]);
             $perm->description = $permission['description'];
             $perm->save();
         }
