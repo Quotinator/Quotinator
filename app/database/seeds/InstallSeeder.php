@@ -1,6 +1,6 @@
 <?php
 
-class DatabaseSeeder extends Seeder {
+class InstallSeeder extends Seeder {
 
 	/**
 	 * Run the database seeds.

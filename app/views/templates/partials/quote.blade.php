@@ -13,6 +13,9 @@
 		@endif
 
 		@if($quote->status == 0)
+			@if ($quote->user == Auth::User())
+				<a href="{{ URL::route('edit', [$quote->id])}}"><i class='fa fa-pencil'></i></a>
+			@endif
 			<span class='pending'>[Pending] <i class='fa fa-spinner fa-spin'></i></span>
 		@elseif ($quote->status == -1)
 			<span class='denied'>[Denied] <i class='fa fa-thumbs-o-down'></i></span>
@@ -39,6 +42,10 @@
 		<a href='?approve={{ $quote->id }}#{{ $quote->id }}' class='Approve' title='approve'><i class='fa fa-thumbs-up'></i></a>
 		&nbsp;|&nbsp;
 		<a href='?deny={{ $quote->id }}#{{ $quote->id }}' class='deny' title='Deny'><i class='fa fa-thumbs-down'></i></a>
+		@if(Auth::user()->can('quote.edit.others'))
+			&nbsp;|&nbsp;
+			<a href="{{ URL::route('moderate.edit', [$quote->id])}}"><i class='fa fa-pencil'></i></a>
+		@endif
 	</div>
 	@endif
 	<pre class='quotetext clear' onfocus='copyClipboard(this);'>{{ $quote->quote }}</pre>

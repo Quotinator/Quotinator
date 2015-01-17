@@ -72,10 +72,12 @@ Route::group(array('before' => 'auth'), function ()
 	Route::get('/users', array('as' => 'users', 'uses' => 'HomeController@getUsers'));
 
 	Route::get('/logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
-	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'EditorController@getIndex'));
-	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.submit', 'uses' => 'EditorController@postIndex'));
-	Route::get('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit', 'uses' => 'EditorController@getIndex'));
-	Route::post('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit', 'uses' => 'EditorController@postIndex'));
+	Route::get('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.new', 'uses' => 'EditorController@getIndex'));
+	Route::post('/submit', array('as' => 'submit', 'before' => 'auth|can:quote.new', 'uses' => 'EditorController@postIndex'));
+	Route::get('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit|quote.owner|quote.pending', 'uses' => 'EditorController@getIndex'));
+	Route::post('/{quote}/edit', array('as' => 'edit', 'before' => 'auth|can:quote.edit|quote.owner|quote.pending', 'uses' => 'EditorController@postIndex'));
+	Route::get('/moderate/{quote}/edit', array('as' => 'moderate.edit', 'before' => 'auth|can:quote.edit.others|quote.pending', 'uses' => 'EditorController@getIndex'));
+	Route::post('/moderate/{quote}/edit', array('as' => 'moderate.edit', 'before' => 'auth|can:quote.edit.others|quote.pending', 'uses' => 'EditorController@postIndex'));
 });
 
 Route::group(array('prefix' => 'dashboard', 'before' => 'auth'), function()

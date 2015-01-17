@@ -109,6 +109,20 @@ App::missing(function($exception)
     return Redirect::route('home')->withErrors("<strong>Error 404:</strong> The page you tried to navigate to does not exist!");
 });
 
+Route::filter('quote.owner', function ($route, $request) {
+	$quote= $route->getParameter('quote');
+	if (Auth::check()) {
+		if ($quote->user->id == Auth::user()->id) return;
+	}
+	
+	return Redirect::route('home')->withErrors(['e' => 'You are not the owner of quote #' . $quote->id]);
+});
+
+Route::filter('quote.pending', function ($route, $request) {
+	$quote= $route->getParameter('quote');
+	if ($quote->status == 0) return;	
+	return Redirect::route('home')->withErrors(['e' => 'This quote is not in a pending state and can not be edited']);
+});
 
 Route::filter('votes', function() {
 	if (Auth::check()) {
