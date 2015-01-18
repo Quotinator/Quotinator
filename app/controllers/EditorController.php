@@ -25,7 +25,7 @@ class EditorController extends PageController {
 
 		if ($validator->fails()) 
 		{
-			return Redirect::to('editor')->withErrors($validator)->withInput(Input::all());
+			return Redirect::to(Route::currentRouteName())->withErrors($validator)->withInput(Input::all());
 		}
 		else
 		{

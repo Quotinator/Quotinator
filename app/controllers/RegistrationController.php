@@ -27,7 +27,7 @@ class RegistrationController extends PageController
 			Auth::login($user);
 			return Redirect::to('/');	
 		}
-		return Redirect::route('register')->withErrors($validator);	
+		return Redirect::route('register')->withErrors($validator)->withInput();	
 		
 		
 	}
