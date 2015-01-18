@@ -6,7 +6,7 @@
 <strong>Quote Status</strong><br />
 @if($quotes->count() > 0)
 	<p>
-	@foreach($quotes->get() as $quote)
+	@foreach($quotes as $quote)
 		@if ($quote->status == 1)
 			<span class='status approved'>[Approved] <i class='fa fa-thumbs-o-up'></i></span> 
 		@elseif ($quote->status == 0)
@@ -17,6 +17,7 @@
 		<a href='{{ URL::route('quote', [$quote->id]) }}'>#{{ $quote->id }}</a> {{ $quote->title }}<br />
 	@endforeach
 	</p>
+	{{ $quotes->links() }}
 @else
 	<p>You have no quotes.</p>
 @endif
