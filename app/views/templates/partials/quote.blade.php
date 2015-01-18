@@ -12,10 +12,13 @@
 			<a target="_blank" href='{{ URL::action('QuoteController@getFavorite', [$quote->id]) }}' title='Make Favorite'><i class='fa fa-star-o favorite'></i></a>
 		@endif
 
-		@if($quote->status == 0)
+		@if($quote->status <= 0)
 			@if ($quote->user == Auth::User())
 				<a href="{{ URL::route('edit', [$quote->id])}}"><i class='fa fa-pencil'></i></a>
 			@endif
+		@endif
+
+		@if($quote->status == 0)
 			<span class='pending'>[Pending] <i class='fa fa-spinner fa-spin'></i></span>
 		@elseif ($quote->status == -1)
 			<span class='denied'>[Denied] <i class='fa fa-thumbs-o-down'></i></span>

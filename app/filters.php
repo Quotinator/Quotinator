@@ -120,7 +120,7 @@ Route::filter('quote.owner', function ($route, $request) {
 
 Route::filter('quote.pending', function ($route, $request) {
 	$quote= $route->getParameter('quote');
-	if ($quote->status == 0) return;	
+	if ($quote->status <= 0) return;	
 	return Redirect::route('home')->withErrors(['e' => 'This quote is not in a pending state and can not be edited']);
 });
 

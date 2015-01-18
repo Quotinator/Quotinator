@@ -43,6 +43,10 @@ class EditorController extends PageController {
 			}
 			else
 			{
+				if (Auth::User() == $quote->user)
+				{
+					$quote->status = 0;
+				}
 				$quote->save();
 			}
 			return Redirect::to('/');
