@@ -28,7 +28,7 @@
 	<br />
 	<span class='poster'>Quoted by <a href='{{ URL::route('user.profile', [$quote->user->username]) }}'>{{ $quote->user->username }}</a></span>
 	<br />
-	<em>{{ $quote->created_at }}</em>
+	<em>{{ $quote->created_at->diffForHumans() }}</em>
 	<div class='votes'>
 		<a target="_blank" href='{{ URL::action('QuoteController@getUpvote', [$quote->id]) }}' class='upvotes'><i class='fa fa-arrow-up'></i>{{ $quote->upVotes() }}</a>
 		&nbsp;|&nbsp;
