@@ -5,7 +5,7 @@ class UserDashboardController extends PageController
 	public function getMain()
 	{
 		$moderatequotes = Quote::orderBy('id', 'desc')->whereStatus(0);
-		$quotes = Auth::user()->quotes()->orderBy('id', 'desc')->take(10);
+		$quotes = Auth::user()->quotes()->orderBy('id', 'desc');
 
 		$this->layout->title = 'Dashboard';
 		$this->layout->nest('content', 'user.dashboard.main', ['quotes' => $quotes, 'moderatequotes' => $moderatequotes]);
