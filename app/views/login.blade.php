@@ -7,6 +7,9 @@
 	{{ Form::label('password', 'Password') }}
 	{{ Form::password('password') }}
 
+	{{ Form::label('persist', 'Remember me') }}
+	{{ Form::checkbox('persist') }}
+
 {{ Form::submit('Submit!') }}
 {{ Form::close() }}
 <p>

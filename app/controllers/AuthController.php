@@ -5,7 +5,8 @@ class AuthController extends PageController
 	{
 		$rules = array (
 				'username' => 'required',
-				'password' => 'required|min:2'
+				'password' => 'required|min:2',
+				'persist' => 'boolean'
 			);
 
 		$validator = Validator::make(Input::all(), $rules);
@@ -17,7 +18,7 @@ class AuthController extends PageController
 				'username' => Input::get('username'),
 				'password' => Input::get('password')
 				);
-			if (Auth::attempt($userdata)) {
+			if (Auth::attempt($userdata, Input::get('persist'))) {
 				return Redirect::intended('/');
 			} else {
 				return Redirect::to('login')->withErrors(array('failed' => 'Invalid Credentials'));
