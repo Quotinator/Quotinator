@@ -31,7 +31,7 @@ class HomeController extends PageController
 	public function getQuote(Quote $quote)
 	{
 		if ($quote->status == 1 || $quote->user->username == Auth::user()->username || Auth::user()->can(['quote.approve', 'quote.deny'])) {
-			$this->layout->title = 'Quote';
+			$this->layout->title = $quote->title;
 			$this->layout->nest('content', 'quote', ['quote' => $quote]);
 		} else {
 			App::abort(404, 'Quote not found!');
