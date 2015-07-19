@@ -7,81 +7,93 @@ use Illuminate\Http\Request;
 use Quotinator\Http\Requests;
 use Quotinator\Http\Controllers\Controller;
 
+use Quotinator\Repositories\QuoteRepositoryInterface;
+
 class QuoteController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return Response
-     */
-    public function index()
-    {
-        return view('home', ['content' => ':)']);
-    }
+  protected $QuoteRepository;
+  public function __construct(QuoteRepositoryInterface $QuoteRepository)
+  {
+    $this->QuoteRepository = $QuoteRepository;
+  }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return Response
-     */
-    public function create()
-    {
-        //
-    }
+  /**
+  * Display a listing of the resource.
+  *
+  * @return Response
+  */
+  public function index(Request $request)
+  {
+    $sortBy = $request->get('sortBy');
+    $direction = $request->get('direction');
+    $title = 'Home';
+    $quotes = $this->QuoteRepository->getPaginated(compact('sortBy', 'direction'));
+    return view('home', compact('title', 'quotes'));
+  }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+  /**
+  * Show the form for creating a new resource.
+  *
+  * @return Response
+  */
+  public function create()
+  {
+    //
+  }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function show($id)
-    {
-        //
-    }
+  /**
+  * Store a newly created resource in storage.
+  *
+  * @param  Request  $request
+  * @return Response
+  */
+  public function store(Request $request)
+  {
+    //
+  }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+  /**
+  * Display the specified resource.
+  *
+  * @param  int  $id
+  * @return Response
+  */
+  public function show($id)
+  {
+    //
+  }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+  /**
+  * Show the form for editing the specified resource.
+  *
+  * @param  int  $id
+  * @return Response
+  */
+  public function edit($id)
+  {
+    //
+  }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+  /**
+  * Update the specified resource in storage.
+  *
+  * @param  Request  $request
+  * @param  int  $id
+  * @return Response
+  */
+  public function update(Request $request, $id)
+  {
+    //
+  }
+
+  /**
+  * Remove the specified resource from storage.
+  *
+  * @param  int  $id
+  * @return Response
+  */
+  public function destroy($id)
+  {
+    //
+  }
 }

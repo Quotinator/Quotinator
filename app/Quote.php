@@ -25,6 +25,13 @@ class Quote extends Model
     return $this->hasMany('Quotinator\Vote')->count();
   }
 
+  public function isFavored() {
+		if (!\Auth::check()) return false;
+		if ($this->belongsToMany('Quotinator\User', 'favorites', 'quote_id', 'user_id')->whereUserId(\Auth::User()->id)->count() > 0) {
+			return true;
+		}
+	}
+
   public function voteConfidence()
   {
     $ups = $this->upVotes();
