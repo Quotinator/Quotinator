@@ -26,8 +26,8 @@
 					{!! Form::close() !!}
 				</div>
 				@if( Auth::check() )
-					<a href='{{ URL::route('user.profile', [Auth::User()->username]) }}'>
-						<img class='myavatar' title='My Profile' src='{{ Auth::User()->avatar }}'>
+					<a href='#'>
+						<img class='myavatar' title='My Profile' src='...'>
 					</a>
 				@endif
 			</div>
@@ -44,10 +44,6 @@
 			<li><a class='button' href='{{-- URL::route('user.favorites', [Auth::User()->username]) --}}'>Favorites&nbsp;<span class="fa fa-star"></span></a></li>
 			<li><a class='button' href='{{-- URL::route('submit') --}}'>Submit&nbsp;<span class="fa fa-pencil"></span></a></li>
 			<li><a class='button' href='{{-- URL::route('user.dashboard') --}}'>Dashboard&nbsp;<span class="fa fa-dashboard"></span></a></li>
-				@if( Auth::user()->can('moderate.bot'))
-					<li><a class='button' href='#'>Penguin</a></li>
-					<li><a class='button' href='#'>Herobrine</a></li>
-				@endif
 
 			<li><a class='button' href='{{ url('/auth/logout') }}'>Logout&nbsp;<span class="fa fa-sign-out"></span></a></li>
 			@else
