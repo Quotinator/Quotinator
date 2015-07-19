@@ -1,0 +1,418 @@
+@import url(https://fonts.googleapis.com/css?family=Sunshiney);
+@import url(https://fonts.googleapis.com/css?family=Port+Lligat+Sans);
+/* You are looking at the CSS... Aren't you Aaron! */
+
+* {
+  margin: 0px;
+	padding: 0px;
+}
+
+a:link {color:#F9F7F5;} /* unvisited link */
+a:visited {color:#F9F7F5;} /* visited link */
+a:hover { color: orange; } /* mouse over link */
+a:active {color:#818E97;} /* selected link */
+html {
+	min-width: 1024px;
+}
+
+body, input, textarea {
+	font-family: 'Sunshiney', cursive;
+	font-family: 'Port Lligat Sans', sans-serif;
+	font-size: 100%;
+}
+
+body {
+	background: #333 url('../img/background.png') no-repeat left top;
+	background-size: 100%;
+	background-attachment: fixed;
+	background-position: -200%, -20%;
+	background-color: #333;
+	color: #FFFFFF;
+}
+
+h1 {font-size:6em;}
+h2 {font-size:2em;}
+h3 {
+	font-size:2em;
+	margin-top: 20px;
+}
+
+h1, h2, h3, .subtitle {
+   color: white;
+   text-shadow:
+       -1px -1px 10px #000,  
+       1px -1px 10px #000,
+       -1px 1px 10px #000,
+       1px 1px 10px #000;
+}
+
+#wrap {
+	width: 90%;
+	margin: auto;
+}
+
+.pagination, .quotes .quote {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.quotes .quote, .pagination {
+	background-color: #181718;
+	background-color: rgba(0, 0, 0, 0.925);
+	border: 1px solid white;
+	/** border-radius:25px; **/
+	padding: 7px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+ul.pagination {
+	list-style-type: none;
+}
+
+ul.pagination li {
+    display: inline;
+}
+
+ul.pagination li.disabled {
+	color: gray;
+}
+
+ul.pagination li.active {
+
+}
+
+ul.pagination li:after {
+	content: ' | ';
+}
+
+ul.pagination li:last-child:after {
+	content: '';
+}
+
+ul.pagination li a:hover, ul.pagination li.active span {
+	background-color: white;
+	color: black;
+	border-radius:25px;
+}
+
+
+ul.nav {
+	text-align: right;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.nav li {
+	color: #999;
+	display: inline-block;
+}
+
+
+ul.nav li a {
+	text-decoration: none;
+	padding: 5px;
+	text-align: left;
+	font-weight: bold;
+	text-shadow:
+		-1px -1px 10px #000,  
+		1px -1px 10px #000,
+		-1px 1px 10px #000,
+		1px 1px 10px #000;
+
+}
+
+ul.nav li a:hover {
+	text-shadow: none;
+	background-color: white;
+	color: black;
+	border-radius: 25px;
+}
+
+#header {
+}
+
+#footer {
+	position: relative;
+}
+
+
+#header #brand {
+	float: left;
+	width: 50%;
+	margin-top: 0;
+	display: inline-block;
+	text-align: left;
+}
+
+#header #brand h1 {
+	color: #FFF;
+	border: transparent;
+	background-color: transparent;
+	/** text-shadow: 2px 2px 1px #666; **/
+
+}
+
+#header #brand h1 a {
+	text-decoration: none;
+}
+
+#header #head-right {
+	position: relative;
+	float: right;
+	width: 50%;
+}
+
+.subtitle {
+	/** text-shadow: 2px 2px 1px #666; **/
+	font-size: 2em;
+}
+
+#footer .col {
+
+}
+
+#trademark {
+	float: left;
+	color: gray;
+	display: inline;
+}
+
+.quotes .quote {
+	position: relative;
+	/*text-shadow: 2px 2px 1px #666;*/
+}
+
+.quotes .quote pre, .quotes .quote p, .quotes .quote form {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 10px;
+	border-left: 3px solid #666;
+	/* white-space: pre-wrap;       /* css-3 */
+	/* white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	/* white-space: -pre-wrap;      /* Opera 4-6 */
+	/* white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;  
+}
+
+.quotes .quote ul {
+	border: 1px dashed #666;	
+}
+
+.favorite {
+	color: #e3cf7a;
+}
+
+.quotes .quote .title {
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.quotes .quote .moderate {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.quotes .quote .votes {
+	font-size: 1.5em;
+	margin: 3px;
+}
+
+.quotes .quote .votes .upvotes {
+	text-decoration: none;
+	background-color: green;
+	padding: 2px;
+}
+
+.quotes .quote .votes .downvotes {
+	text-decoration: none;
+	background-color: red;
+	padding: 2px;
+}
+
+.quotes .quote .quotetext {
+
+}
+
+.quotes .quote .usertiles {
+	padding: 8px;
+	display: block;
+}
+
+.quotes .quote .usertiles .usertile {
+	border: 1px dashed #666;
+	width: 150px;
+	height: 150px;
+	text-align: center;
+	float: left;
+	padding: 8px;
+	margin-right: 8px;
+	text-decoration: none;
+}
+
+.quotes .quote .usertiles .usertile .title {
+	font-weight: bolder;
+	font-size: 1.25em
+}
+
+.quotes .quote .avatar {
+	margin: 5px;
+	float: left;
+	display:inline-block;
+}
+
+.quotes .quote .usertiles:after{
+	content: ".";
+	display: block;
+	clear: both;
+	visibility: hidden;
+	line-height: 0;
+	height: 0;
+}
+
+ul {
+	padding-left: 40px;
+}
+
+.status {
+	margin-top: 5px;
+	width: 90px;
+}
+
+.approved {
+	color: green;
+	display: inline-block;
+}
+
+.pending {
+	color: grey;
+	display: inline-block;
+}
+
+.denied {
+	color: red;
+	display: inline-block;
+}
+
+
+textarea {
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box;    
+	box-sizing: border-box;      
+	width: 100%;
+	height: 500px;
+}
+
+select[multiple] {
+	width: 100%;
+	height: 300px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+	width: 50%;
+	
+}
+
+#searchdiv {
+	margin-top: 10px;
+	position: absolute; top: 0; right: 0;
+}
+
+.search[type=text] {
+	width: 200px;
+	border-right-style: none !important;
+	border-top-left-radius:25px;
+	border-bottom-left-radius:25px;
+}
+
+/* type=submit is the button */
+.search[type=submit] {
+	width: 50px;
+	background: white;	
+	border-left-style: none !important;
+	border-top-right-radius:25px;
+	border-bottom-right-radius:25px;
+}
+
+.search[type=submit]:active {
+	background: white;
+	border: 1px solid white;
+}
+.search[type=text], .search[type=submit]{
+	float:right;
+	padding:6px 15px 6px 15px;
+	border: 1px solid white;
+	outline: none;
+}
+
+.search[type=text]:focus {
+	background-color: white;
+	border: 1px solid white;
+	font-weight: bold;
+}
+
+input:not(.search), select, textarea {
+	font-family: 'Sunshiney', cursive;
+	font-family: 'Port Lligat Sans', sans-serif;
+	padding: 10px 10px 10px 10px;
+	outline: none;
+	border-radius:25px;
+	border: 1px solid white;
+	display: block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	box-sizing: border-box;
+}
+
+.advert {
+	margin: auto;
+	margin-bottom: 20px;
+	text-align: center;
+	height: 90px;
+	background-color: #181718;
+	border: 1px solid white;
+}
+
+.clear {
+	clear: both;
+}
+
+.myavatar {
+	margin-top: 45px;
+	position: absolute; top: 0; right: 0;
+	height: 64px;
+}
+
+.myavatar, .avatar {
+	border-radius:15px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.col-2 {
+	float: left;
+	width: 49%;
+	margin: 0.5%;
+	box-sizing: border-box;
+}
+
+.col-3 {
+	float:left;
+	width: 32.3%;
+	margin: 0.5%;
+	box-sizing: border-box;
+}
+
+.DO {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 100px;
+	padding-bottom: 10px;
+}
