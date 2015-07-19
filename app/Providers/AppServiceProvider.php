@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Quotinator\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

@@ -1,5 +1,5 @@
 suites:
     main:
-        namespace: App
-        psr4_prefix: App
+        namespace: Quotinator
+        psr4_prefix: Quotinator
         src_path: app
