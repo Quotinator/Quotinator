@@ -32,4 +32,24 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    public function roles()
+    {
+      return $this->belongsToMany('Quotinator\Role');
+    }
+
+    public function favorites()
+    {
+      return $this->belongsToMany('Quotinator\Quote', 'favorites', 'user_id', 'quote_id')->withTimestamps();
+    }
+
+    public function quotes()
+    {
+      return $this->hasMany('Quotinator\Quote');
+    }
+
+    public function votes()
+    {
+      return $this->belongsToMany('Quotinator\Quote', 'votes', 'user_id', 'quote_id')->withTimestamps();
+    }
 }
