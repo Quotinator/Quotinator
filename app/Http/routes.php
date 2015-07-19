@@ -11,6 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ['as' => 'home', 'uses' => 'QuoteController@index']);
+Route::get('top', ['as' => 'top', 'uses' => 'QuoteController@index']);
+Route::get('random', ['as' => 'random', 'uses' => 'QuoteController@index']);
+
+Route::controllers([
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
+]);

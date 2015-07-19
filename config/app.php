@@ -144,6 +144,11 @@ return [
         Quotinator\Providers\EventServiceProvider::class,
         Quotinator\Providers\RouteServiceProvider::class,
 
+        /*
+         * 3rd Party Service Providers...
+         */
+	'Collective\Html\HtmlServiceProvider',
+
     ],
 
     /*
@@ -191,7 +196,7 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
-
+	'Form' => 'Collective\Html\FormFacade',
+	'Html' => 'Collective\Html\HtmlFacade',
     ],
-
 ];
