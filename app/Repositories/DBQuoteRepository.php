@@ -2,6 +2,7 @@
 
 use Quotinator\Quote;
 use Quotinator\Repositories\QuoteRepositoryInterface;
+use Quotinator\Repositories\Exceptions\QuoteNotFoundException;
 
 class DBQuoteRepository implements QuoteRepositoryInterface {
   protected $Quote;
@@ -9,6 +10,19 @@ class DBQuoteRepository implements QuoteRepositoryInterface {
   public function __construct(Quote $Quote)
   {
     $this->Quote = $Quote;
+  }
+
+  public function getSingle($id)
+  {
+    $quote = $this->Quote->whereId($id)->first();
+    if ($quote instanceof \Quotinator\Quote)
+    {
+      return $quote;
+    }
+    else
+    {
+      throw new QuoteNotFoundException($id);
+    }
   }
 
   public function getPaginated(array $params)

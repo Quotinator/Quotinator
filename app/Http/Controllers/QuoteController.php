@@ -8,6 +8,7 @@ use Quotinator\Http\Requests;
 use Quotinator\Http\Controllers\Controller;
 
 use Quotinator\Repositories\QuoteRepositoryInterface;
+use Quotinator\Repositories\Exceptions\QuoteNotFoundException;
 
 class QuoteController extends Controller
 {
@@ -24,9 +25,9 @@ class QuoteController extends Controller
   */
   public function index(Request $request)
   {
-    $sortBy = $request->get('sortBy');
-    $direction = $request->get('direction');
-    $title = 'Home';
+    $sortBy = $request->get('sortBy', 'Home');
+    $direction = $request->get('direction', 'Asc');
+    $title = $sortBy;
     $quotes = $this->QuoteRepository->getPaginated(compact('sortBy', 'direction'));
     return view('home', compact('title', 'quotes'));
   }
@@ -38,7 +39,8 @@ class QuoteController extends Controller
   */
   public function create()
   {
-    //
+    $title = "Create";
+    return view('editor', compact('title'));
   }
 
   /**
@@ -58,9 +60,10 @@ class QuoteController extends Controller
   * @param  int  $id
   * @return Response
   */
-  public function show($id)
+  public function show($quote)
   {
-    //
+      $title = $quote->title;
+      return view('quote', compact('title', 'quote'));
   }
 
   /**
@@ -69,9 +72,10 @@ class QuoteController extends Controller
   * @param  int  $id
   * @return Response
   */
-  public function edit($id)
+  public function edit($quote)
   {
-    //
+    $title = "Edit \"{$quote->title}\"";
+    return view('editor', compact('title', 'quote'));
   }
 
   /**
