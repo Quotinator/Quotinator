@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Quote extends Model
 {
+  protected $fillable = ['title', 'quote', 'status'];
+
   public function user()
   {
     return $this->belongsTo('Quotinator\User');

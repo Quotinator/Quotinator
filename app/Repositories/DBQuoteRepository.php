@@ -1,15 +1,38 @@
 <?php namespace Quotinator\Repositories;
 
 use Quotinator\Quote;
+use Quotinator\Http\Requests\Request;
 use Quotinator\Repositories\QuoteRepositoryInterface;
 use Quotinator\Repositories\Exceptions\QuoteNotFoundException;
 
 class DBQuoteRepository implements QuoteRepositoryInterface {
   protected $Quote;
 
+  const APPROVED = 1;
+  const PENDING = 0;
+  const DENIED = -1;
+
   public function __construct(Quote $Quote)
   {
     $this->Quote = $Quote;
+  }
+
+  public function create(Request $request)
+  {
+    $status = DBQuoteRepository::PENDING;
+    $title = $request->input('title');
+    $quote = $request->input('quote');
+    $new = \Auth::user()->quotes()->create(compact('title', 'quote', 'status'));
+    $new->save();
+    return $new;
+  }
+
+  public function update(Quote $quote, Request $request)
+  {
+    $quote->title = $request->input('title');
+    $quote->quote = $request->input('quote');
+    $quote->save();
+    return $quote;
   }
 
   public function getSingle($id)

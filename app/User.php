@@ -45,7 +45,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
     public function quotes()
     {
-      return $this->hasMany('Quotinator\Quote');
+      return $this->hasMany('Quotinator\Quote', 'user_id', 'id');
     }
 
     public function votes()

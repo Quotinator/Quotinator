@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Quotinator\Http\Requests;
 use Quotinator\Http\Controllers\Controller;
 
+use Quotinator\Quote;
+use Quotinator\Http\Requests\StoreQuoteRequest;
 use Quotinator\Repositories\QuoteRepositoryInterface;
 use Quotinator\Repositories\Exceptions\QuoteNotFoundException;
 
@@ -16,6 +18,7 @@ class QuoteController extends Controller
   public function __construct(QuoteRepositoryInterface $QuoteRepository)
   {
     $this->QuoteRepository = $QuoteRepository;
+    $this->middleware('auth', array('except' => ['index', 'show']));
   }
 
   /**
@@ -49,18 +52,19 @@ class QuoteController extends Controller
   * @param  Request  $request
   * @return Response
   */
-  public function store(Request $request)
+  public function store(StoreQuoteRequest $request)
   {
-    //
+      $quote = $this->QuoteRepository->create($request);
+      return redirect()->route('quote', $quote->id);
   }
 
   /**
   * Display the specified resource.
   *
-  * @param  int  $id
+  * @param  Quote $quote
   * @return Response
   */
-  public function show($quote)
+  public function show(Quote $quote)
   {
       $title = $quote->title;
       return view('quote', compact('title', 'quote'));
@@ -69,10 +73,10 @@ class QuoteController extends Controller
   /**
   * Show the form for editing the specified resource.
   *
-  * @param  int  $id
+  * @param  Quote $quote
   * @return Response
   */
-  public function edit($quote)
+  public function edit(Quote $quote)
   {
     $title = "Edit \"{$quote->title}\"";
     return view('editor', compact('title', 'quote'));
@@ -82,21 +86,22 @@ class QuoteController extends Controller
   * Update the specified resource in storage.
   *
   * @param  Request  $request
-  * @param  int  $id
+  * @param  Quote  $quote
   * @return Response
   */
-  public function update(Request $request, $id)
+  public function update(StoreQuoteRequest $request, Quote $quote)
   {
-    //
+    $this->QuoteRepository->update($quote, $request);
+    return redirect()->route('quote', $quote->id);
   }
 
   /**
   * Remove the specified resource from storage.
   *
-  * @param  int  $id
+  * @param  Quote  $quote
   * @return Response
   */
-  public function destroy($id)
+  public function destroy(Quote $quote)
   {
     //
   }
