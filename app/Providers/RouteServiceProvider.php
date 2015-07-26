@@ -2,6 +2,7 @@
 
 namespace Quotinator\Providers;
 
+use Quotinator\User;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 
@@ -26,7 +27,10 @@ class RouteServiceProvider extends ServiceProvider
     {
         parent::boot($router);
         $router->model('quote', 'Quotinator\Quote');
-        $router->model('user', 'Quotinator\User');
+        $router->bind('user', function($name)
+        {
+          return User::where('username', $name)->first();
+        });
     }
 
     /**
