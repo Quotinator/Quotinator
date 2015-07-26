@@ -12,8 +12,6 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'QuoteController@index']);
-Route::get('top', ['as' => 'top', 'uses' => 'QuoteController@top']);
-Route::get('random', ['as' => 'random', 'uses' => 'QuoteController@random']);
 Route::get('{quote}', ['as' => 'quote', 'uses' => 'QuoteController@show'])->where('quote', '[0-9]+');
 
 Route::get('{quote}/edit', ['as' => 'quote.edit', 'uses' => 'QuoteController@edit'])->where('quote', '[0-9]+');

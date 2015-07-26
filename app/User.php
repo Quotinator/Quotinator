@@ -2,6 +2,7 @@
 
 namespace Quotinator;
 
+use Kyslik\ColumnSortable\Sortable;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Passwords\CanResetPassword;
@@ -10,7 +11,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract
 {
-    use Authenticatable, CanResetPassword;
+    use Authenticatable, CanResetPassword, Sortable;
 
     /**
      * The database table used by the model.
@@ -25,6 +26,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
      * @var array
      */
     protected $fillable = ['username', 'email', 'password'];
+
+    /**
+     * The attributes that are sortable.
+     *
+     * @var array
+     */
+    protected $sortable = ['created_at', 'username', 'email'];
 
     /**
      * The attributes excluded from the model's JSON form.

@@ -149,6 +149,7 @@ return [
          */
       	'Collective\Html\HtmlServiceProvider',
         'GrahamCampbell\Exceptions\ExceptionsServiceProvider',
+        Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
     ],
 
     /*

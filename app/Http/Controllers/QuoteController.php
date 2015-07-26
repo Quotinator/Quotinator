@@ -32,7 +32,7 @@ class QuoteController extends Controller
   public function index()
   {
     $title = 'Home';
-    $quotes = $this->Quote->paginate(10);
+    $quotes = $this->Quote->Sortable()->orderBy('id', 'desc')->paginate(10);
     return view('home', compact('title', 'quotes'));
   }
 

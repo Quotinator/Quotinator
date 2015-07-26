@@ -36,9 +36,6 @@
 		<ul class='nav clear'>
 
 			<li><a class='button' href='{{ URL::route('home') }}'>Home&nbsp;<span class="fa fa-home"></span></a></li>
-			<li><a class='button' href='{{ URL::route('top') }}'>Top&nbsp;<span class="fa fa-arrow-up"></span></a></li>
-			<li><a class='button' href='{{ URL::route('random') }}'>Random&nbsp;<span class="fa fa-random"></span></a></li>
-
 			@if( Auth::check() )
 
 			<li><a class='button' href='{{-- URL::route('user.favorites', [Auth::User()->username]) --}}'>Favorites&nbsp;<span class="fa fa-star"></span></a></li>

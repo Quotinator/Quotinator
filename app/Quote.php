@@ -3,10 +3,25 @@
 namespace Quotinator;
 
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Quote extends Model
 {
+  use Sortable;
+
+  /**
+   * The attributes that are mass assignable.
+   *
+   * @var array
+   */
   protected $fillable = ['title', 'quote', 'status'];
+
+  /**
+   * The attributes that are sortable.
+   *
+   * @var array
+   */
+  protected $sortable = ['id', 'quote', 'title', 'status', 'confidence'];
 
   public function user()
   {
