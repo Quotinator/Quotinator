@@ -25,17 +25,8 @@ class RouteServiceProvider extends ServiceProvider
     public function boot(Router $router)
     {
         parent::boot($router);
-        $router->bind('quote', function($id) {
-          try
-          {
-           return app('Quotinator\Repositories\QuoteRepositoryInterface')->getSingle($id);
-          }
-          catch (QuoteNotFoundException $e)
-          {
-            abort(404, $e->getMessage());
-          }
-
-        });
+        $router->model('quote', 'Quotinator\Quote');
+        $router->model('user', 'Quotinator\User');
     }
 
     /**

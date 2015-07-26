@@ -9,15 +9,18 @@ use Quotinator\Http\Controllers\Controller;
 
 use Quotinator\Quote;
 use Quotinator\Http\Requests\StoreQuoteRequest;
-use Quotinator\Repositories\QuoteRepositoryInterface;
-use Quotinator\Repositories\Exceptions\QuoteNotFoundException;
 
 class QuoteController extends Controller
 {
-  protected $QuoteRepository;
-  public function __construct(QuoteRepositoryInterface $QuoteRepository)
+  protected $Quote;
+
+  const APPROVED = 1;
+  const PENDING = 0;
+  const DENIED = -1;
+
+  public function __construct(Quote $Quote)
   {
-    $this->QuoteRepository = $QuoteRepository;
+    $this->Quote = $Quote;
     $this->middleware('auth', array('except' => ['index', 'show']));
   }
 
@@ -26,12 +29,10 @@ class QuoteController extends Controller
   *
   * @return Response
   */
-  public function index(Request $request)
+  public function index()
   {
-    $sortBy = $request->get('sortBy', 'Home');
-    $direction = $request->get('direction', 'Asc');
-    $title = $sortBy;
-    $quotes = $this->QuoteRepository->getPaginated(compact('sortBy', 'direction'));
+    $title = 'Home';
+    $quotes = $this->Quote->paginate(10);
     return view('home', compact('title', 'quotes'));
   }
 
@@ -54,8 +55,12 @@ class QuoteController extends Controller
   */
   public function store(StoreQuoteRequest $request)
   {
-      $quote = $this->QuoteRepository->create($request);
-      return redirect()->route('quote', $quote->id);
+    $status = self::PENDING;
+    $title = $request->input('title');
+    $quote = $request->input('quote');
+    $new = \Auth::user()->quotes()->create(compact('title', 'quote', 'status'));
+    $new->save();
+    return redirect()->route('quote', $new->id);
   }
 
   /**
@@ -91,7 +96,9 @@ class QuoteController extends Controller
   */
   public function update(StoreQuoteRequest $request, Quote $quote)
   {
-    $this->QuoteRepository->update($quote, $request);
+    $quote->title = $request->input('title');
+    $quote->quote = $request->input('quote');
+    $quote->save();
     return redirect()->route('quote', $quote->id);
   }
 

@@ -142,7 +142,6 @@ return [
          */
         Quotinator\Providers\AppServiceProvider::class,
         Quotinator\Providers\EventServiceProvider::class,
-        Quotinator\Providers\QuoteServiceProvider::class,
         Quotinator\Providers\RouteServiceProvider::class,
 
         /*

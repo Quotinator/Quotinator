@@ -12,8 +12,8 @@
 */
 
 Route::get('/', ['as' => 'home', 'uses' => 'QuoteController@index']);
-Route::get('top', ['as' => 'top', 'uses' => 'QuoteController@index']);
-Route::get('random', ['as' => 'random', 'uses' => 'QuoteController@index']);
+Route::get('top', ['as' => 'top', 'uses' => 'QuoteController@top']);
+Route::get('random', ['as' => 'random', 'uses' => 'QuoteController@random']);
 Route::get('{quote}', ['as' => 'quote', 'uses' => 'QuoteController@show'])->where('quote', '[0-9]+');
 
 Route::get('{quote}/edit', ['as' => 'quote.edit', 'uses' => 'QuoteController@edit'])->where('quote', '[0-9]+');
@@ -22,9 +22,9 @@ Route::post('{quote}/edit', ['as' => 'quote.edit', 'uses' => 'QuoteController@up
 Route::get('create', ['as' => 'quote.create', 'uses' => 'QuoteController@create']);
 Route::post('create', ['as' => 'quote.create', 'uses' => 'QuoteController@store']);
 
-Route::get('~{username}', ['as' => 'user.profile', 'uses' => 'QuoteController@index']);
-Route::get('~{username}/favorites', ['as' => 'user.favorites', 'uses' => 'QuoteController@index']);
-Route::get('~{username}/quotes', ['as' => 'user.quotes', 'uses' => 'QuoteController@index']);
+Route::get('~{user}', ['as' => 'user.profile', 'uses' => 'ProfileController@getIndex']);
+Route::get('~{user}/favorites', ['as' => 'user.favorites', 'uses' => 'ProfileController@getFavorites']);
+Route::get('~{user}/quotes', ['as' => 'user.quotes', 'uses' => 'QuoteController@index']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
