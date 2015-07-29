@@ -15,6 +15,14 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         // $this->call(UserTableSeeder::class);
+        factory('Quotinator\User', 3)
+                   ->create()
+                   ->each(function($u) {
+                      for ($i=0; $i < 10; $i++) {
+                         $u->quotes()->save(factory('Quotinator\Quote')->make());
+                      }
+                    });
+
 
         Model::reguard();
     }
