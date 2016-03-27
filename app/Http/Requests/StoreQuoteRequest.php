@@ -2,8 +2,6 @@
 
 namespace Quotinator\Http\Requests;
 
-use Quotinator\Http\Requests\Request;
-
 class StoreQuoteRequest extends Request
 {
     /**
@@ -14,10 +12,12 @@ class StoreQuoteRequest extends Request
     public function authorize()
     {
         $quote = $this->route('quote');
-        if ($quote !== null)
-        {
-          if ($quote->user->id != \Auth::User()->id) return false;
+        if ($quote !== null) {
+            if ($quote->user->id != \Auth::User()->id) {
+                return false;
+            }
         }
+
         return true;
     }
 
