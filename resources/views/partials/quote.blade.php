@@ -1,7 +1,7 @@
 <div class='quote'>
 	<div id='{{ $quote->id }}'></div>
 	<a href='{{ URL::route('user.profile', [$quote->user->username]) }}' title="View {{ $quote->user->username }}'s profile">
-		<img class='avatar' alt='{{ $quote->user->username }}' src='{{ $quote->user->avatar }}' />
+		<img class='avatar' alt='{{ $quote->user->username }}' src='{{ $quote->user->avatar() }}' />
 	</a>
 	<span class='title'>
 		<a href='{{ URL::route('quote', [$quote->id]) }}'>#{{ $quote->id }}</a>

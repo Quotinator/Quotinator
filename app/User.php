@@ -60,4 +60,9 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
       return $this->belongsToMany('Quotinator\Quote', 'votes', 'user_id', 'quote_id')->withTimestamps();
     }
+
+    public function avatar()
+    {
+      return \Gravatar::get($this->email);
+    }
 }

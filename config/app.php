@@ -160,6 +160,7 @@ return [
       	'Collective\Html\HtmlServiceProvider',
         'GrahamCampbell\Exceptions\ExceptionsServiceProvider',
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
+        'Creativeorange\Gravatar\GravatarServiceProvider',
     ],
 
     /*
@@ -209,5 +210,6 @@ return [
         'View'      => Illuminate\Support\Facades\View::class,
 	      'Form' => 'Collective\Html\FormFacade',
 	      'Html' => 'Collective\Html\HtmlFacade',
+        'Gravatar' => 'Creativeorange\Gravatar\Facades\Gravatar',
     ],
 ];

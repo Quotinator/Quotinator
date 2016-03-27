@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "~5.2",
         "graham-campbell/exceptions": "~8.3",
-        "kyslik/column-sortable": "~5.0"
+        "kyslik/column-sortable": "~5.0",
+        "creativeorange/gravatar": "~1.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

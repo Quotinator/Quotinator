@@ -27,7 +27,7 @@
 				</div>
 				@if( Auth::check() )
 					<a href='#'>
-						<img class='myavatar' title='My Profile' src='...'>
+						<img class='myavatar' title='My Profile' src='{{ Auth::User()->avatar() }}'>
 					</a>
 				@endif
 			</div>
