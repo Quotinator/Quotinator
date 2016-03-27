@@ -22,7 +22,7 @@ Route::post('create', ['as' => 'quote.create', 'uses' => 'QuoteController@store'
 
 Route::get('~{user}', ['as' => 'user.profile', 'uses' => 'ProfileController@getIndex']);
 Route::get('~{user}/favorites', ['as' => 'user.favorites', 'uses' => 'ProfileController@getFavorites']);
-Route::get('~{user}/quotes', ['as' => 'user.quotes', 'uses' => 'QuoteController@index']);
+Route::get('~{user}/quotes', ['as' => 'user.quotes', 'uses' => 'ProfileController@getQuotes']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

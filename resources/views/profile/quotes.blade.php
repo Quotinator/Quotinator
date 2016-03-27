@@ -3,8 +3,5 @@
 @section('title', $title)
 
 @section('content')
-    @foreach($quotes as $quote)
-      @include('partials.quote', array('quote' => $quote))
-    @endforeach
-    {!! $quotes->render() !!}
+    @include('partials.quotes', array('quotes' => $quotes))
 @endsection

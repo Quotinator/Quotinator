@@ -28,6 +28,23 @@ return [
     /*
     Icon that shows when generating sortable link while column is not sorted.
     */
-    'sortable_icon'    => 'fa fa-sort'
+    'sortable_icon'    => 'fa fa-sort',
+
+    /*
+    suffix class that is appended when ascending order is applied
+    */
+    'asc_suffix'        => '-asc',
+    /*
+    suffix class that is appended when descending order is applied
+    */
+    'desc_suffix'       => '-desc',
+    /*
+    default anchor class, if value is null none is added
+    */
+    'anchor_class'      => null,
+    /*
+    relation - column separator. ex: detail.phone_number means relation "detail" and column "phone_number"
+     */
+    'uri_relation_column_separator' => '.'
 
 ];

@@ -2,12 +2,17 @@
 
 namespace Quotinator;
 
+use Log;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
 class Quote extends Model
 {
   use Sortable;
+
+  const APPROVED = 1;
+  const PENDING = 0;
+  const DENIED = -1;
 
   /**
    * The attributes that are mass assignable.
@@ -42,12 +47,34 @@ class Quote extends Model
     return $this->hasMany('Quotinator\Vote')->count();
   }
 
-  public function isFavored() {
+  public function isFavored()
+  {
 		if (!\Auth::check()) return false;
 		if ($this->belongsToMany('Quotinator\User', 'favorites', 'quote_id', 'user_id')->whereUserId(\Auth::User()->id)->count() > 0) {
 			return true;
 		}
 	}
+
+  public function scopeStatus($query, $type)
+  {
+    if (strtolower($type) == 'approved')
+    {
+      return $query->whereStatus(self::APPROVED);
+    }
+    elseif (strtolower($type) == 'pending')
+    {
+      return $query->whereStatus(self::PENDING);
+    }
+    elseif (strtolower($type) == 'denied')
+    {
+      return $query->whereStatus(self::DENIED);
+    }
+    else
+    {
+      Log::warning('An invalid quote status was used. Defaulting to Approved only.');
+      return $query->whereStatus(self::APPROVED);
+    }
+  }
 
   public function voteConfidence()
   {
@@ -60,10 +87,12 @@ class Quote extends Model
     return sqrt($phat+$z*$z/(2*$n)-$z*(($phat*(1-$phat)+$z*$z/(4*$n))/$n))/(1+$z*$z/$n);
   }
 
-  public function updateVoteConfidence() {
+  public function updateVoteConfidence()
+  {
     $this->confidence = $this->voteConfidence();
     $this->save();
   }
+
   public function favorited()
   {
     return $this->belongsToMany('Quotinator\User', 'favorites', 'quote_id', 'user_id')->withTimestamps();

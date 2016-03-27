@@ -14,10 +14,6 @@ class QuoteController extends Controller
 {
   protected $Quote;
 
-  const APPROVED = 1;
-  const PENDING = 0;
-  const DENIED = -1;
-
   public function __construct(Quote $Quote)
   {
     $this->Quote = $Quote;
@@ -32,7 +28,7 @@ class QuoteController extends Controller
   public function index()
   {
     $title = 'Home';
-    $quotes = $this->Quote->whereStatus(self::APPROVED)->Sortable()->orderBy('id', 'desc')->paginate(10);
+    $quotes = $this->Quote->status('Approved')->sortable(['id' => 'desc'])->paginate(10);
     return view('home', compact('title', 'quotes'));
   }
 

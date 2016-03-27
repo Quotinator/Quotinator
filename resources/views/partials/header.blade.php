@@ -38,7 +38,7 @@
 			<li><a class='button' href='{{ URL::route('home') }}'>Home&nbsp;<span class="fa fa-home"></span></a></li>
 			@if( Auth::check() )
 
-			<li><a class='button' href='{{-- URL::route('user.favorites', [Auth::User()->username]) --}}'>Favorites&nbsp;<span class="fa fa-star"></span></a></li>
+			<li><a class='button' href='{{ URL::route('user.favorites', [Auth::User()->username]) }}'>Favorites&nbsp;<span class="fa fa-star"></span></a></li>
 			<li><a class='button' href='{{-- URL::route('submit') --}}'>Submit&nbsp;<span class="fa fa-pencil"></span></a></li>
 			<li><a class='button' href='{{-- URL::route('user.dashboard') --}}'>Dashboard&nbsp;<span class="fa fa-dashboard"></span></a></li>
 
