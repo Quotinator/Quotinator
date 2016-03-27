@@ -25,6 +25,6 @@ Route::get('~{user}/favorites', ['as' => 'user.favorites', 'uses' => 'ProfileCon
 Route::get('~{user}/quotes', ['as' => 'user.quotes', 'uses' => 'QuoteController@index']);
 
 Route::controllers([
-    'auth'     => 'Auth\AuthController',
-    'password' => 'Auth\PasswordController',
+	'auth' => 'Auth\AuthController',
+	'password' => 'Auth\PasswordController',
 ]);

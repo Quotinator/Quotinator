@@ -2,8 +2,8 @@
 
 namespace Quotinator\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\ResetsPasswords;
 use Quotinator\Http\Controllers\Controller;
+use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class PasswordController extends Controller
 {
