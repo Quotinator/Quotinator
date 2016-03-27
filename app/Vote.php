@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Vote extends Model
 {
-    public function user()
+  	public function user()
     {
-        return $this->belongsTo('Quotinator\User');
-    }
+  		return $this->belongsTo('Quotinator\User');
+  	}
 
-    public function quote()
+  	public function quote()
     {
-        return $this->belongsTo('Quotinator\Quote');
-    }
+  		return $this->belongsTo('Quotinator\Quote');
+  	}
 }

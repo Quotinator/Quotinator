@@ -13,17 +13,17 @@
 
 $factory->define(Quotinator\User::class, function ($faker) {
     return [
-        'username'       => $faker->username,
-        'email'          => $faker->email,
-        'password'       => str_random(10),
+        'username' => $faker->username,
+        'email' => $faker->email,
+        'password' => str_random(10),
         'remember_token' => str_random(10),
     ];
 });
 
 $factory->define(Quotinator\Quote::class, function ($faker) {
     return [
-        'title'  => $faker->sentence(),
-        'quote'  => $faker->paragraph(),
-        'status' => $faker->numberBetween(-1, 1),
+        'title' => $faker->sentence(),
+        'quote' => $faker->paragraph(),
+        'status' => $faker->numberBetween(-1, 1)
     ];
 });

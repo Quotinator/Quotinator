@@ -7,15 +7,15 @@ return [
     */
     'columns' => [
         'numeric_columns'  => [
-            'rows'  => ['created_at', 'updated_at', 'level', 'id'],
-            'class' => 'fa fa-sort-numeric',
+            'rows' => ['created_at', 'updated_at', 'level', 'id'],
+            'class' => 'fa fa-sort-numeric'
         ],
         'amount_columns'   => [
-            'rows'  => ['price'],
-            'class' => 'fa fa-sort-amount',
+            'rows' => ['price'],
+            'class' => 'fa fa-sort-amount'
         ],
         'alpha_columns'    => [
-            'rows'  => ['name', 'description', 'title', 'email', 'slug'],
+            'rows' => ['name', 'description', 'title', 'email', 'slug'],
             'class' => 'fa fa-sort-alpha',
         ],
     ],
@@ -28,6 +28,6 @@ return [
     /*
     Icon that shows when generating sortable link while column is not sorted.
     */
-    'sortable_icon'    => 'fa fa-sort',
+    'sortable_icon'    => 'fa fa-sort'
 
 ];
