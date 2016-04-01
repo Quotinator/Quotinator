@@ -53,6 +53,7 @@ class Quote extends Model
 		if ($this->belongsToMany('Quotinator\User', 'favorites', 'quote_id', 'user_id')->whereUserId(\Auth::User()->id)->count() > 0) {
 			return true;
 		}
+    return false;
 	}
 
   public function scopeStatus($query, $type)
