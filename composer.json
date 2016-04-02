@@ -10,7 +10,8 @@
         "laravelcollective/html": "~5.2",
         "graham-campbell/exceptions": "~8.3",
         "kyslik/column-sortable": "~5.0",
-        "creativeorange/gravatar": "~1.0"
+        "creativeorange/gravatar": "~1.0",
+        "mccool/laravel-auto-presenter": "^4.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

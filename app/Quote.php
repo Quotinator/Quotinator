@@ -3,10 +3,12 @@
 namespace Quotinator;
 
 use Log;
+use Quotinator\Presenters\QuotePresenter;
+use McCool\LaravelAutoPresenter\HasPresenter;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 
-class Quote extends Model
+class Quote extends Model implements hasPresenter
 {
   use Sortable;
 
@@ -102,5 +104,10 @@ class Quote extends Model
   public function voted()
   {
     return $this->belongsToMany('Quotinator\User', 'votes', 'quote_id', 'user_id')->withTimestamps();
+  }
+
+  public function getPresenterClass()
+  {
+    return QuotePresenter::class;
   }
 }

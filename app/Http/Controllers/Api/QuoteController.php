@@ -15,7 +15,7 @@ class QuoteController extends AbstractApiController
    */
   public function getQuotes()
   {
-    return ['data' => Quote::all()];
+    return $this->setData(Quote::all())->respond();
   }
 
   /**
@@ -24,7 +24,7 @@ class QuoteController extends AbstractApiController
    */
   public function getQuote(Quote $quote)
   {
-    return ['data' => $quote];
+    return $this->setData($quote)->respond();
   }
 
   /**

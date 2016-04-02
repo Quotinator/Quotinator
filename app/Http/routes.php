@@ -24,7 +24,7 @@ Route::get('~{user}', ['as' => 'user.profile', 'uses' => 'ProfileController@getI
 Route::get('~{user}/favorites', ['as' => 'user.favorites', 'uses' => 'ProfileController@getFavorites']);
 Route::get('~{user}/quotes', ['as' => 'user.quotes', 'uses' => 'ProfileController@getQuotes']);
 
-Route::group(['prefix' => 'api/v1'], function() {
+Route::group(['prefix' => 'api/v1', 'as' => 'api::'], function() {
 	Route::get('quotes', ['as' => 'quotes', 'uses' => 'Api\\QuoteController@getQuotes']);
 	Route::get('quotes/{quote}', ['as' => 'quote', 'uses' => 'Api\\QuoteController@getQuote'])->where('quote', '[0-9]+');
 });

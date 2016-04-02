@@ -161,6 +161,7 @@ return [
         'GrahamCampbell\Exceptions\ExceptionsServiceProvider',
         Kyslik\ColumnSortable\ColumnSortableServiceProvider::class,
         'Creativeorange\Gravatar\GravatarServiceProvider',
+        'McCool\LaravelAutoPresenter\AutoPresenterServiceProvider',
     ],
 
     /*
