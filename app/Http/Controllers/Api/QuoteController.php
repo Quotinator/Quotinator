@@ -13,16 +13,17 @@ class QuoteController extends AbstractApiController
    * Get all Quotes
    * @return \Illuminate\Http\Response
    */
-  public function getQuotes()
+  public function getQuotes(Request $request)
   {
-    return $this->setData(Quote::all())->respond();
+    $quotes = Quote::paginate(10);
+    return $this->paginator($request, $quotes);
   }
 
   /**
    * Get a single Quote
    * @return \Illuminate\Http\Response
    */
-  public function getQuote(Quote $quote)
+  public function getQuote(Request $request, Quote $quote)
   {
     return $this->setData($quote)->respond();
   }
@@ -31,7 +32,7 @@ class QuoteController extends AbstractApiController
    * Create a new Quote
    * @return \Illuminate\Http\Response
    */
-  public function postQuote()
+  public function postQuote(Request $request)
   {
     //TODO
   }
@@ -41,7 +42,7 @@ class QuoteController extends AbstractApiController
    * @param  Quote  $quote
    * @return \Illuminate\Http\Response
    */
-  public function putQuote(Quote $quote)
+  public function putQuote(Request $request, Quote $quote)
   {
     //TODO
   }
